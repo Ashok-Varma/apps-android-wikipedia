@@ -17,6 +17,7 @@ gen-external-apklibs
 .idea
 out
 *.tmproj
+/captures
 
 # OS specific files
 *~
@@ -27,7 +28,7 @@ scripts/apps
 scripts/backup.ab
 
 # Node modules for the js
-www/node_modules
+node_modules/
 www/bundle*.js
 www/abusefilter.js
 www/preview.js
@@ -37,3 +38,9 @@ www/preview.css
 
 # Should never check in apk files
 *.apk
+# Older releases
+/releases
+
+# diff-screenshots
+/app/screenshots
+/app/screenshots-diff
