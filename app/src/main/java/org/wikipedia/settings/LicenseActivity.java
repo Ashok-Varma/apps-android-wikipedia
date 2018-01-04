@@ -20,14 +20,18 @@ public class LicenseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_license);
 
+        final int libraryNameStart = 24;
+        if (getIntent().getData() == null
+                || getIntent().getData().getPath() == null
+                || getIntent().getData().getPath().length() <= libraryNameStart) {
+            return;
+        }
         final String path = getIntent().getData().getPath();
         // Example string: "/android_asset/licenses/Otto"
-
-        final int libraryNameStart = 24;
         setTitle(getString(R.string.license_title, path.substring(libraryNameStart)));
 
         try {
-            TextView textView = (TextView) findViewById(R.id.license_text);
+            TextView textView = findViewById(R.id.license_text);
             final int assetPathStart = 15;
             final String text = readFile(getAssets().open(path.substring(assetPathStart)));
             textView.setText(StringUtil.fromHtml(text.replace("\n\n", "<br/><br/>")));

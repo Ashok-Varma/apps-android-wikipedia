@@ -42,6 +42,9 @@
   <string name="nearby_osm_license">&amp;copy; &amp;nbsp;ویرایشگران&amp;nbsp&lt;a href=\"https://www.openstreetmap.org/copyright/\"&gt;اپن‌استریت‌مپ&lt;/a&gt;</string>
   <string name="last_updated_text"> %1$s آخرین به‌روزرسانی</string>
   <string name="talk_page_link_text">بحث</string>
+  <string name="edit_history_link_text">ویرایش تاریخچه</string>
+  <string name="map_view_link_text">دیدن در نقشه</string>
+  <string name="language_count_link_text">به %d زبان در دسترس است</string>
   <string name="content_license_html">مطالب تحت &lt;a class=\"external\" rel=\"nofollow\" href=\"%1$s\"&gt;CC BY-SA 3.0&lt;/a&gt; در دسترس است مگر اینکه غیر آن بیان گردد.</string>
   <string name="edit_save_action_license_logged_in">با ذخیره کردن، &lt;a href=\"%1$s\"&gt;شرایط استفاده&lt;/a&gt; را می‌پذیرید، و به طور جبران‌ناشدنی مشارکت‌هایتان را تحت پروانه &lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt; منتشر کنید.</string>
   <string name="edit_save_action_license_anon">با ذخیره کردن، &lt;a href=\"%1$s\"&gt;شرایط استفاده&lt;/a&gt; را می‌پذیرید، و به طور جبران‌ناشدنی مشارکت‌هایتان را تحت پروانه &lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt; منتشر کنید. ویرایش‌ها به نشانی آی‌پی دستگاه‌تان نسبت داده خواهد شد. اگر &lt;a href=\"https://#login\"&gt;وارد شوید&lt;/a&gt;، حریم خصوصی بیشتری دارید.</string>
@@ -200,6 +203,7 @@
   <string name="preference_title_show_images">نمایش تصویرها</string>
   <string name="preference_summary_show_images">فعال کردن یا غیرفعال کردن بارگیری تصویرها در صفحات. اگر سرعت اینترنت شما پائین است یا محدودیت حجمی دانلود داده دارید، تنظیمات را غیرفعال کنید.</string>
   <string name="read_more_section">بیشتر بخوانید</string>
+  <string name="about_article_section">دربارهٔ این مقاله</string>
   <string name="menu_gallery_visit_page">رفتن به صفحه پرونده</string>
   <string name="gallery_error_draw_failed">امکان ترسیم تصویر نیست.</string>
   <string name="license_title">مجوز برای %s</string>
@@ -263,6 +267,8 @@
   <string name="theme_chooser_dialog_image_dimming_switch_label">گم نورکردن تصویر (در حالت تیره)</string>
   <string name="preference_title_prefer_offline_content">محتوای آفلاین را ترجیح بده</string>
   <string name="preference_summary_prefer_offline_content">با نشان دادن محتوای آفلاین به جای گرفتن آخرین نسخه می‌توانید در مصرف داده صرفه‌جویی کنید</string>
+  <string name="preference_title_enable_offline_library">فعال کردن کتابخانهٔ آفلاین</string>
+  <string name="preference_summary_enable_offline_library">دسترسی به بستهٔ مقالات ویکی‌پدیا (نشان داده شده در فایل .ZIM) که بر روی دستگاه شما برای مطالعهٔ آفلاین دانلود شده‌است. &lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;موارد بیشتر&lt;/a&gt;</string>
   <string name="crash_report_dialog_title">باعرض پوزش از بابت خطای اخیر</string>
   <string name="crash_report_dialog_text">آیا ممکن است که به نرم‌افزار برای ارسال گزارش خطا به صورت خودکار به سرورهای  شخص سوم اجازه دهید؟ با این کار به بنیاد مدیاویکی برای رفع کردن سریع‌تر آنها کمک می‌کنید.</string>
   <string name="crash_report_dialog_dont_send_button">رها کردن</string>
@@ -309,6 +315,8 @@
   <string name="reading_list_menu_edit_description">ویرایش توضیحات</string>
   <string name="reading_list_action_menu_remove_from_offline">حذف از آفلاین</string>
   <string name="reading_list_action_menu_save_for_offline">ذخیره برای آفلاین</string>
+  <string name="reading_list_action_menu_remove_all_from_offline">حذف همه از آفلاین</string>
+  <string name="reading_list_action_menu_save_all_for_offline">ذخیره همه برای آفلاین</string>
   <string name="reading_list_action_menu_add_to_another_list">افزودن به فهرست دیگر</string>
   <string name="reading_list_name_sample">فهرست مطالعهٔ من</string>
   <string name="reading_list_name_hint">نام این فهرست</string>
@@ -363,12 +371,17 @@
   <string name="notification_reverted">ویرایش شما در مقالۀ &lt;strong&gt;%2$s&lt;/strong&gt; توسط &lt;em&gt;%1$s&lt;/em&gt; واگرداندی شد.</string>
   <string name="notification_thanks_title">از شما تشکر شده‌است!</string>
   <string name="notification_thanks">&lt;em&gt;%1$s&lt;/em&gt; ممنون از ویرایش شما در صفحۀ &lt;strong&gt;%2$s&lt;/strong&gt;</string>
+  <string name="notification_syncing_pause_button">مکث</string>
+  <string name="notification_syncing_resume_button">ادامه</string>
+  <string name="notification_syncing_cancel_button" fuzzy="true">لغو</string>
   <string name="view_continue_reading_card_title">ادامه دادن به خواندن</string>
   <string name="view_because_you_read_card_title">چون شما مطالعه می‌کنید</string>
   <string name="view_random_card_title">تصادفی</string>
-  <string name="view_random_card_subtitle">خواندن مقاله‌ای تصادفی از ویکی‌پدیا</string>
+  <string name="view_random_card_subtitle" fuzzy="true">خواندن مقاله‌ای تصادفی از ویکی‌پدیا</string>
+  <string name="view_next_random_article">بارگیری مقالهٔ تصادفی دیگر</string>
   <string name="view_main_page_card_title">امروز در ویکی‌پدیا</string>
   <string name="view_main_page_card_subtitle">صفحه اصلی در%s</string>
+  <string name="view_main_page_card_action">دیدن صفحه اصلی</string>
   <string name="view_featured_image_card_title">تصویر روز</string>
   <string name="view_featured_image_card_download">بارگیری</string>
   <string name="menu_feed_card_dismiss">مخفی کردن این کارت</string>
@@ -380,16 +393,19 @@
   <string name="most_read_list_card_title">گریش‌ها</string>
   <string name="view_static_card_icon_content_description">آیکون کارت</string>
   <string name="view_card_news_title">در اخبار</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
     <item quantity="one">دیروز</item>
     <item quantity="other">%d روز پیش</item>
   </plurals>
-  <string name="view_continue_reading_card_subtitle_today">امروز</string>
+  <string name="view_continue_reading_card_subtitle_today" fuzzy="true">امروز</string>
   <string name="view_announcement_card_negative_action">نه ممنون</string>
   <string name="view_offline_card_text">محتوی در زمان آفلاین در دسترس نیست.</string>
   <string name="view_featured_article_card_title">مقاله برگزیده</string>
   <string name="view_featured_article_footer_save_button_label">ذخیره</string>
   <string name="view_featured_article_footer_saved_button_label">ذخیره شد</string>
+  <string name="feed_configure_menu_title">کارت‌های تنظیم</string>
+  <string name="feed_configure_activity_title" fuzzy="true">برگه‌های تنظیم کاوش</string>
+  <string name="feed_configure_menu_reset" fuzzy="true">بازگردانی به پیش‌فرض</string>
   <string name="description_edit_text_hint">توضیحات عنوان</string>
   <string name="description_edit_save">منتشر</string>
   <string name="description_edit_add_description">افزودن توضیحات عنوان</string>
@@ -436,7 +452,7 @@
   <string name="offline_my_compilations">مدیریت کتابخانهٔ آفلاین</string>
   <string name="offline_compilations_title">کتابخانه آفلاین</string>
   <string name="offline_compilations_search_by_name">جستجوی بسته مقاله‌ها بر پایهٔ نام</string>
-  <string name="offline_compilations_found_count">در کتابخانهٔ من (%d)</string>
+  <string name="offline_compilations_found_count">در کتابخانهٔ آفلاین من (%d)</string>
   <string name="offline_compilations_add">افزودن به کتابخانهٔ آفلاین من</string>
   <string name="remote_compilations_title">کتابخانهٔ آفلاین</string>
   <string name="remote_compilations_description">به کمک کتابخانهٔ آفلاین، برای مواقعی که به اینترنت دسترسی ندارید می‌توانید بسته‌هایی از مقالات برای خواندن دانلود کنید.</string>
@@ -463,6 +479,9 @@
   <string name="offline_library_title">کتابخانه آفلاین</string>
   <string name="offline_library_empty_title">چیزی در کتابخانه آفلاین شما وجود ندارد</string>
   <string name="offline_library_empty_description">انتخاب بسته‌ای از مقالات ویکی‌پدیا برای بارگیری، برای دسترسی بدون نیاز به اینترنت در زمانی دیگر</string>
+  <string name="offline_library_empty_description_sideload">«بستهٔ مقالات» در کتابخانهٔ آفلاین که برای ذخیره در دستگاه شما بسته‌بندی شده‌است که می‌توانید مقالات را به صورت آفلاین مطالعه کنید.&lt;br /&gt;&lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;موارد بیشتر&lt;/a&gt;</string>
+  <string name="offline_library_packs_hint">بسته مقالات باقی‌مانده در کتابخانهٔ شما برای زمانی که قصد مطالعهٔ آفلاین دارید.&lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;موارد بیشتر&lt;/a&gt;</string>
+  <string name="offline_library_data_usage_hint">آیا قصد دارید از اینترنت موبایلتان برای ذخیره استفاده کنید؟ گزینهٔ «ترجیح می‌دهم از محتویا آفلاین استفاده کنم» را در تنظیمات انتخاب کنید تا مقالات آفلاین را ابتدا نمایش دهد حتی در زمانی که به اینترنت وصل هستید.&lt;a href=\"#settings\"&gt;رفتن به تنظیمات&lt;/a&gt;</string>
   <string name="offline_library_empty_search">جستجو در کتابخانه آفلاین</string>
   <string name="offline_library_search_results_state">نمایش نتایج از کتابخانه آفلاین</string>
   <string name="offline_library_onboarding_action">پیدا کردن موارد بیشتر</string>
@@ -474,11 +493,12 @@
   <string name="offline_library_onboarding_uninterrupted_reading_subtitle">به مطالعه و خواندن مقاله‌ها در کتابخانه آفلاین ادامه دهید هنگامی که نیازی به اتصال به اینترنت ندارید.</string>
   <string name="offline_library_onboarding_store_knowledge_title">دانش بیشتری ذخیره کنید</string>
   <string name="offline_library_onboarding_store_knowledge_subtitle">دانلود ویکی‌پدیا به میزانی که دستگاه شما می‌تواند آن را مدیریت کند. کتابخانهٔ آفلاین همچنین می‌تواند از روی حافظهٔ خارجی هم در دسترس باشد.</string>
+  <string name="offline_library_main_page_hint_html">این صفحهٔ اصلی دید کلی‌ای از محتوای صفحه ارائه می‌دهد.&lt;br /&gt;&lt;br /&gt;همچنین در زمانی که آفلاین هستید می‌توانید در محتوای هر مقالهٔ آفلاین کتابخانه‌تان جستجو کنید.</string>
   <string name="onboarding_skip">رها کردن</string>
   <string name="onboarding_continue">ادامه</string>
   <string name="onboarding_get_started">شروع شد</string>
   <string name="onboarding_explore_title">روش‌های جدید برای کاوش</string>
-  <string name="onboarding_explore_text">کاوش خصوصیات مقالات، رتبه موضوعات و خواندن پیشنهادها در بازخورد کاوش.</string>
+  <string name="onboarding_explore_text" fuzzy="true">کاوش خصوصیات مقالات، رتبه موضوعات و خواندن پیشنهادها در بازخورد کاوش.</string>
   <string name="onboarding_reading_list_sync_title">مطالعهٔ فهرست با همسان‌سازی</string>
   <string name="onboarding_reading_list_sync_text">ایجاد فهرست‌های مطالعه از مقالاتی که شما قصد مطالعهٔ آنها را برای بعدا دارید، با وجودی که آفلاین هستید &lt;a href=\"#login\"&gt;به سامانه وارد شوید&lt;/a&gt; یا حساب کاربری ویکی‌پدیا ایجاد کنید تا از فهرست‌های خواند پشتیبانی داشته باشید.</string>
   <string name="onboarding_analytics_title">ارسال اطلاعات ناشناس</string>
@@ -490,4 +510,14 @@
   <string name="app_shortcuts_random">تصادفی</string>
   <string name="app_shortcuts_continue_reading">ادامه دادن به خواندن</string>
   <string name="app_shortcuts_search">جستجو</string>
+  <string name="all_trending_text">همهٔ مقالات پربیننده در %1$s</string>
+  <string name="top_on_this_day">بالاترین در %1$s</string>
+  <string name="on_this_day_card_title">در این روز</string>
+  <string name="more_events_text" fuzzy="true">وقایع تاریخی بیشتر برای این روز</string>
+  <string name="events_count_text" fuzzy="true">%1$s رویداد از %2$s - %3$d</string>
+  <string name="this_year">امسال</string>
+  <plurals name="diff_years">
+    <item quantity="one">سال پیش</item>
+    <item quantity="other">%d سال پیش</item>
+  </plurals>
 </resources>

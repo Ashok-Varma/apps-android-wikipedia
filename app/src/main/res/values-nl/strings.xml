@@ -42,6 +42,7 @@
   <string name="nearby_osm_license">&amp;copy; &amp;nbsp;&lt;a href=\"https://www.openstreetmap.org/copyright/\"&gt;OpenStreetMap&lt;/a&gt; bijdragers</string>
   <string name="last_updated_text">%1$s voor het laatst bijgewerkt</string>
   <string name="talk_page_link_text">Overleg</string>
+  <string name="edit_history_link_text">Bewerkingsgeschiedenis</string>
   <string name="content_license_html">Inhoud is beschikbaar onder de licentie &lt;a href=\"%1$s\"&gt;CC BY-SA 3.0&lt;/a&gt; tenzij anders aangegeven</string>
   <string name="edit_save_action_license_logged_in">Door op te slaan, gaat u akkoord met de &lt;a href=\"%1$s\"&gt;Gebruiksvoorwaarden&lt;/a&gt;, en het onherroepelijk vrijgeven van uw bijdragen onder de &lt;a href=\"%2$s\"&gt;CC-BY-SA-3.0&lt;/a&gt; licentie.</string>
   <string name="edit_save_action_license_anon">Door op te slaan, gaat u akkoord met de &lt;a href=\"%1$s\"&gt;Gebruiksvoorwaarden&lt;/a&gt;, en het onherroepelijk vrijgeven van uw bijdragen onder de &lt;a href=\"%2$s\"&gt;CC-BY-SA-3.0&lt;/a&gt; licentie. Bewerkingen worden toegeschreven aan het IP-adres van uw apparaat. Als u zich &lt;a href=\"https://#login\"&gt;aanmeldt&lt;/a&gt;, heeft u meer privacy.</string>
@@ -159,7 +160,7 @@
   <string name="edit_abandon_confirm_yes">Ja</string>
   <string name="edit_abandon_confirm_no">Nee</string>
   <string name="user_blocked_from_editing_title">Geblokkeerd</string>
-  <string name="user_logged_in_blocked_from_editing">Uw gebruiker is geblokkeerd en kan deze wiki niet bewerken.</string>
+  <string name="user_logged_in_blocked_from_editing">Uw gebruikersaccount is geblokkeerd en kan deze wiki niet bewerken.</string>
   <string name="user_anon_blocked_from_editing">Uw IP-adres is geblokkeerd en kan niet bewerken.</string>
   <string name="edit_how_page_improved">Hoe heeft u de pagina verbeterd?</string>
   <string name="edit_next">Volgende</string>
@@ -354,7 +355,7 @@
   <string name="view_continue_reading_card_title">Verder lezen</string>
   <string name="view_because_you_read_card_title">Omdat u hebt gelezen</string>
   <string name="view_random_card_title">Randomizer</string>
-  <string name="view_random_card_subtitle">Een willekeurige pagina uit Wikipedia lezen</string>
+  <string name="view_random_card_subtitle" fuzzy="true">Een willekeurige pagina uit Wikipedia lezen</string>
   <string name="view_main_page_card_title">Vandaag op Wikipedia</string>
   <string name="view_main_page_card_subtitle">Hoofdpagina op %s</string>
   <string name="view_featured_image_card_title">Afbeelding van de dag</string>
@@ -368,11 +369,11 @@
   <string name="most_read_list_card_title">Populair</string>
   <string name="view_static_card_icon_content_description">Kaartpictogram</string>
   <string name="view_card_news_title">Actueel</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
     <item quantity="one">Gisteren</item>
     <item quantity="other">%d dagen geleden</item>
   </plurals>
-  <string name="view_continue_reading_card_subtitle_today">Vandaag</string>
+  <string name="view_continue_reading_card_subtitle_today" fuzzy="true">Vandaag</string>
   <string name="view_announcement_card_negative_action">Nee, bedankt</string>
   <string name="view_offline_card_text">De inhoud kan niet offline geladen worden.</string>
   <string name="view_featured_article_card_title">Uitgelichte pagina</string>
@@ -425,7 +426,7 @@
   <string name="onboarding_continue">Doorgaan</string>
   <string name="onboarding_get_started">Aan de slag</string>
   <string name="onboarding_explore_title">Nieuwe manieren om te ontdekken</string>
-  <string name="onboarding_explore_text">Ontdek populaire artikelen, populaire onderwerpen en lees-suggesties op de ontdekking-feed.</string>
+  <string name="onboarding_explore_text" fuzzy="true">Ontdek populaire artikelen, populaire onderwerpen en lees-suggesties op de ontdekking-feed.</string>
   <string name="onboarding_reading_list_sync_title">Leeslijsten met synchronisatie</string>
   <string name="onboarding_reading_list_sync_text">Maak leeslijsten aan van artikels dat u later wenst te lezen wanneer u offline bent. &lt;a href=\"#login\"&gt;Log in of maak aan&lt;/a&gt; uw Wikipedia-account om uw leeslijsten op te slaan in een backup.</string>
   <string name="onboarding_analytics_title">Verstuur data anoniem</string>

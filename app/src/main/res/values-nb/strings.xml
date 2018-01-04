@@ -42,6 +42,9 @@
   <string name="nearby_osm_license">&amp;copy; &amp;nbsp;&lt;a href=\"https://www.openstreetmap.org/copyright/\"&gt;OpenStreetMap&lt;/a&gt;-bidragsytere</string>
   <string name="last_updated_text">Sist oppdatert %s</string>
   <string name="talk_page_link_text">Diskusjon</string>
+  <string name="edit_history_link_text">Redigeringshistorikk</string>
+  <string name="map_view_link_text">Vis på kart</string>
+  <string name="language_count_link_text">Tilgjengelig på %d andre språk</string>
   <string name="content_license_html">Innholdet er tilgjengelig under &lt;a href=\"%1$s\"&gt;CC BY-SA 3.0&lt;/a&gt; om ikke annet er angitt</string>
   <string name="edit_save_action_license_logged_in">Ved å lagre samtykker du til &lt;a href=\"%1$s\"&gt;bruksvilkårene&lt;/a&gt;, og til å ugjenkallelig slippe bidragene dine under &lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt;-lisensen.</string>
   <string name="edit_save_action_license_anon">Ved å lagre samtykker du til &lt;a href=\"%1$s\"&gt;bruksvilkårene&lt;/a&gt;, og til å ugjenkallelig slippe bidragene dine under &lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt;-lisensen. Redigeringer vil bli tilskrevet IP-adressen for enheten din. Hvis du &lt;a href=\"https://#login\"&gt;logger inn&lt;/a&gt; vil du få bedre personvern.</string>
@@ -143,7 +146,9 @@
   <string name="about_description">Om Wikipedia-appen</string>
   <string name="privacy_policy_description">Personvernpolitikk</string>
   <string name="terms_of_use_description">Bruksvilkår</string>
+  <string name="about_wikipedia_url">https://no.m.wikipedia.org/wiki/Wikipedia:Om</string>
   <string name="privacy_policy_url" fuzzy="true">https://wikimediafoundation.org/wiki/Privacy_Policy</string>
+  <string name="offline_reading_and_data_url">https://www.mediawiki.org/wiki/Wikimedia_Apps/Android_FAQ#Offline_reading_and_data</string>
   <string name="terms_of_use_url">https://wikimediafoundation.org/wiki/Terms_of_Use</string>
   <string name="cc_by_sa_3_url">https://creativecommons.org/licenses/by-sa/3.0/deed.no</string>
   <string name="cc_0_url">https://creativecommons.org/publicdomain/zero/1.0/deed.no</string>
@@ -172,6 +177,8 @@
   <string name="edit_summary_tag_other_hint">Andre måter du kan forbedre denne siden</string>
   <string name="find_next">Finn neste</string>
   <string name="find_previous">Finn forrige</string>
+  <string name="find_first_occurence">Dette er den første forekomsten</string>
+  <string name="find_last_occurence">Dette er den siste forekomsten</string>
   <string name="abusefilter_title_warn">Dette er muligens en lite konstruktiv redigering. Er du sikker på at du vil publisere den?</string>
   <string name="abusefilter_title_disallow">Denne redigeringen kan ikke publiseres. Gå tilbake og prøv igjen.</string>
   <string name="abusefilter_text_warn">Redigeringen har blitt identifisert som potensielt destruktiv av et automatisk filter. Den kan inneholde en eller flere av følgende ting:&lt;br /&gt;&lt;br /&gt;· Hele ord skrevet med store bokstaver&lt;br /&gt;· Tømming av artikkelen eller spamming&lt;br /&gt;· Irrelevante eksterne lenker eller bilder&lt;br /&gt;· Gjentagende tegn</string>
@@ -200,6 +207,7 @@
   <string name="preference_title_show_images">Vis bilder</string>
   <string name="preference_summary_show_images">Skru av eller på lasting av bilder på sidene. Fjern avkryssingen om du har en treg internettforbindelse, eller ikke vil bruke så mye data.</string>
   <string name="read_more_section">Les mer</string>
+  <string name="about_article_section">Om denne artikkelen</string>
   <string name="menu_gallery_visit_page">Gå til filsiden</string>
   <string name="gallery_error_draw_failed">Kunne ikke tegne bildet.</string>
   <string name="license_title">Lisens for %s</string>
@@ -263,6 +271,8 @@
   <string name="theme_chooser_dialog_image_dimming_switch_label">Mørklegging av bilder (i den mørke drakten)</string>
   <string name="preference_title_prefer_offline_content">Foretrekk offline-innhold</string>
   <string name="preference_summary_prefer_offline_content">Minsk dataforbruket ved å laste artikler som er tilgjengelige offline i stedet for å alltid laste den siste versjonen av en artikkel</string>
+  <string name="preference_title_enable_offline_library">Slå på lokalt bibliotek</string>
+  <string name="preference_summary_enable_offline_library">Få tilgang til Wikipedia-artikkelpakker (vist om .ZIM-filer) som har blitt lastet ned til enheten din for å lese når du er offline. &lt;a href=\"https://www.mediawiki.org/Wikimedia_Apps/Offline_support\"&gt;Lær mer&lt;/a&gt;</string>
   <string name="crash_report_dialog_title">Beklager, appen krasjet forrige gang</string>
   <string name="crash_report_dialog_text">Vil du sende en krasjrapport til tredjepartstjenesten HockeyApp slik at Wikimedia kan gjennomgå den og fikse feilen som førte til krasjet?</string>
   <string name="crash_report_dialog_dont_send_button">Hopp over</string>
@@ -280,6 +290,9 @@
   <string name="color_theme_select">Drakt</string>
   <string name="color_theme_light">Lys</string>
   <string name="color_theme_dark">Mørk</string>
+  <string name="color_theme_black">Svart</string>
+  <string name="color_theme_test_title">Eksempeltekst</string>
+  <string name="preference_title_app_theme">Appdrakt</string>
   <string name="preference_title_color_theme">Mørkt tema</string>
   <string name="preference_summary_color_theme">Bytt til appens mørke fargetema</string>
   <string name="text_size_increase">Øk tekststørrelse</string>
@@ -365,12 +378,22 @@
   <string name="notification_reverted">Redigeringen din på artikkelen &lt;strong&gt;%2$s&lt;/strong&gt; ble tilbakestilt av &lt;em&gt;%1$s&lt;/em&gt;.</string>
   <string name="notification_thanks_title">Du er blitt takket!</string>
   <string name="notification_thanks">&lt;em&gt;%1$s&lt;/em&gt; takket for redigeringen din på siden &lt;strong&gt;%2$s&lt;/strong&gt;</string>
+  <string name="notification_channel_name">Synkroniserer</string>
+  <string name="notification_channel_description">Synkroniseringsframgang</string>
+  <string name="notification_syncing_title">Synkroniserer %1$d artikler …</string>
+  <string name="notification_syncing_description">%1$d artikler igjen</string>
+  <string name="notification_syncing_pause_button">Pause</string>
+  <string name="notification_syncing_resume_button">Fortsett</string>
+  <string name="notification_syncing_cancel_button">Avbryt</string>
   <string name="view_continue_reading_card_title">Fortsett å lese</string>
   <string name="view_because_you_read_card_title">Fordi du leste</string>
   <string name="view_random_card_title">Tilfeldighetsgenerator</string>
-  <string name="view_random_card_subtitle">Les en tilfeldig artikkel på Wikipedia</string>
+  <string name="view_random_card_subtitle">Gå gjennom tilfeldige artikler å lese fra Wikipedia.</string>
+  <string name="view_random_card_action">Kast terning</string>
+  <string name="view_next_random_article">Last en annen tilfeldig artikkel</string>
   <string name="view_main_page_card_title">I dag på Wikipedia</string>
   <string name="view_main_page_card_subtitle">Hovedsiden den %s</string>
+  <string name="view_main_page_card_action">Vis hovedsiden</string>
   <string name="view_featured_image_card_title">Dagens bilde</string>
   <string name="view_featured_image_card_download">Last ned</string>
   <string name="menu_feed_card_dismiss">Skjul dette kortet</string>
@@ -383,15 +406,23 @@
   <string name="view_static_card_icon_content_description">Kortsymbol</string>
   <string name="view_card_news_title">I nyhetene</string>
   <plurals name="view_continue_reading_card_subtitle">
-    <item quantity="one">I går</item>
+    <item quantity="one">i går</item>
     <item quantity="other">for %d dager siden</item>
   </plurals>
-  <string name="view_continue_reading_card_subtitle_today">I dag</string>
+  <string name="view_continue_reading_card_subtitle_today">i dag</string>
+  <string name="view_continue_reading_card_subtitle_read_date">Lest %s</string>
   <string name="view_announcement_card_negative_action">Nei takk</string>
   <string name="view_offline_card_text">Innholdet kan ikke lastes når du er offline.</string>
   <string name="view_featured_article_card_title">Utvalgt artikkel</string>
   <string name="view_featured_article_footer_save_button_label">Lagre</string>
   <string name="view_featured_article_footer_saved_button_label">Lagret</string>
+  <string name="feed_configure_menu_title">Konfigurer kort</string>
+  <string name="feed_configure_activity_title" fuzzy="true">Konfigurer utforskningskort</string>
+  <string name="feed_configure_menu_reset" fuzzy="true">Tilbakestill til standardinnstillinger</string>
+  <string name="feed_item_type_news">Artikler om aktuelle hendelser</string>
+  <string name="feed_item_type_on_this_day">Historiske hendelser denne datoen</string>
+  <string name="feed_item_type_because_you_read">Forslag basert på nylig leste artikler i historikken din</string>
+  <string name="feed_configure_onboarding_action">Tilpass</string>
   <string name="description_edit_text_hint">Tittelbeskrivelse</string>
   <string name="description_edit_save">Publiser</string>
   <string name="description_edit_add_description">Legg til en tittelbeskrivelse</string>
@@ -435,10 +466,11 @@
   <string name="offline_read_permission_rationale">Hvis du vil lagre artikler for lesing offline må du gi appen tilgang til enhetens bilder, media og filer.</string>
   <string name="offline_read_permission_error">Tilgang til å lese filer fra enheten har ikke blitt gitt.</string>
   <string name="offline_card_text">Du leser nå Wikipedia offline med artikler fra det lokale biblioteket ditt.</string>
+  <string name="offline_card_sideloading_text">Du leser nå Wikipedia frakoblet med artikkelpakker fra det frakoblede biblioteket ditt.</string>
   <string name="offline_my_compilations">Administrer det lokale biblioteket mitt</string>
   <string name="offline_compilations_title">Lokalt bibliotek</string>
   <string name="offline_compilations_search_by_name">Finn artikkelpakker etter navn</string>
-  <string name="offline_compilations_found_count">I biblioteket mitt (%d)</string>
+  <string name="offline_compilations_found_count">I mitt lokale bibliotek (%d)</string>
   <string name="offline_compilations_add">Legg til i det lokale biblioteket mitt</string>
   <string name="remote_compilations_title">Lokalt bibliotek</string>
   <string name="remote_compilations_description">Med det lokale biblioteket kan du nå laste ned pakker av artikler så du kan lese dem når du er uten internettforbindelse.</string>
@@ -465,6 +497,9 @@
   <string name="offline_library_title">Lokalt bibliotek</string>
   <string name="offline_library_empty_title">Det lokale biblioteket ditt er tomt</string>
   <string name="offline_library_empty_description">Velg en pakke av Wikipedia-artikler å laste ned for å kunne lese offline senere.</string>
+  <string name="offline_library_empty_description_sideload">«Artikkelpakker» i det lokale biblioteket ditt er forhåndspakkede sett av artikler som kan lagres på enheten din, så du kan fortsette å lese mens du er offline.&lt;br /&gt;&lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;Lær mer&lt;/a&gt;</string>
+  <string name="offline_library_packs_hint">ARtikkelpakker i biblioteket ditt vil fortsatt være tilgjengelige mens du er offline. &lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;Lær mer&lt;/a&gt;</string>
+  <string name="offline_library_data_usage_hint">Ønsker du å spare på dataforbruket? Velg «Foretrekk offline-innhold» i innstillingene for å vise artikler som er tilgjengelige offline først, selv om du har internettforbindelse. &lt;a href=\"#settings\"&gt;Gå til innstillingene&lt;/a&gt;</string>
   <string name="offline_library_empty_search">Søk etter artikkelpakker</string>
   <string name="offline_library_search_results_state">Søkeresultater fra det lokale biblioteket ditt</string>
   <string name="offline_library_onboarding_action">Finn ut mer</string>
@@ -476,11 +511,13 @@
   <string name="offline_library_onboarding_uninterrupted_reading_subtitle">Du kan fortsette å lese og søke etter artikler i det lokale biblioteket ditt når du ikke har internettforbindelse.</string>
   <string name="offline_library_onboarding_store_knowledge_title">Lagre mer kunnskap</string>
   <string name="offline_library_onboarding_store_knowledge_subtitle">Last ned så mye av Wikipedia som enheten din har plass til. Det lokale biblioteket kan også lese artikkelpakker fra minnekort.</string>
+  <string name="offline_library_main_page_hint_html">Denne hovedsiden gir en oversikt over innholdet i denne artikkelpakka.&lt;br /&gt;&lt;br /&gt;Du kan også utforske innholdet i artikkelpakker i det frakoblede biblioteket ditt ved å søke etter tilgjengelige artikler mens du er frakoblet.</string>
   <string name="onboarding_skip">Hopp over</string>
   <string name="onboarding_continue">Fortsett</string>
   <string name="onboarding_get_started">Kom i gang</string>
+  <string name="onboarding_welcome_title">Den frie encyklopedien</string>
   <string name="onboarding_explore_title">Nye måter å utforske</string>
-  <string name="onboarding_explore_text">Utforsk gode og utmerkede artikler, aktuelle temaer, og leseforslag i Utforsker.</string>
+  <string name="onboarding_explore_text" fuzzy="true">Utforsk gode og utmerkede artikler, aktuelle temaer, og leseforslag i Utforsker.</string>
   <string name="onboarding_reading_list_sync_title">Leselister med synkronisering</string>
   <string name="onboarding_reading_list_sync_text">Lag leselister over artikler du vil lese senere, selv når du er offline. &lt;a href=\"#login\"&gt;Logg inn eller opprett&lt;/a&gt; en Wikipedia-konto for å sikkerhetskopiere listene.</string>
   <string name="onboarding_analytics_title">Send anonyme data</string>
@@ -489,7 +526,20 @@
   <string name="onboarding_create_account_sync">Synkroniser leselistene dine</string>
   <string name="onboarding_create_account_contributions">Hold oversikt over bidragene dine</string>
   <string name="onboarding_create_account_preferences">Lagre innstillinger</string>
+  <string name="onboarding_got_it">Skjønner</string>
   <string name="app_shortcuts_random">Tilfeldig</string>
   <string name="app_shortcuts_continue_reading">Fortsett å lese</string>
   <string name="app_shortcuts_search">Søk</string>
+  <string name="more_trending_text">Mer som dette</string>
+  <string name="all_trending_text">Alle populære artikler %1$s</string>
+  <string name="top_on_this_day">Populært %1$s</string>
+  <string name="on_this_day_card_title">På denne datoen</string>
+  <string name="more_events_text" fuzzy="true">Flere historiske hendelser på denne datoen</string>
+  <string name="events_count_text">%1$s hendelser fra %2$s–%3$d</string>
+  <string name="this_year">Dette året</string>
+  <string name="back_to_top">Tilbake til toppen</string>
+  <plurals name="diff_years">
+    <item quantity="one">I fjor</item>
+    <item quantity="other">For %d år siden</item>
+  </plurals>
 </resources>

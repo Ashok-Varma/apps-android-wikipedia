@@ -4,8 +4,13 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.SpannedString;
 import android.text.TextUtils;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -112,17 +117,40 @@ public final class StringUtil {
                 .trim();
     }
 
-    /** Fix Html.fromHtml is deprecated problem
-     * @param source provided Html string
-     * @return returned Spanned of appropriate method according to version check
-     * */
-    @NonNull public static Spanned fromHtml(@NonNull String source) {
+    /**
+     * @param source String that may contain HTML tags.
+     * @return returned Spanned string that may contain spans parsed from the HTML source.
+     */
+    @NonNull public static Spanned fromHtml(@Nullable String source) {
+        if (source == null) {
+            return new SpannedString("");
+        }
+        if (!source.contains("<")) {
+            // If the string doesn't contain any hints of HTML tags, then skip the expensive
+            // processing that fromHtml() performs.
+            return new SpannedString(source);
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return Html.fromHtml(source, Html.FROM_HTML_MODE_LEGACY);
         } else {
             //noinspection deprecation
             return Html.fromHtml(source);
         }
+    }
+
+    @NonNull
+    public static SpannableStringBuilder boldenSubstrings(@NonNull String text, @NonNull List<String> subStrings) {
+        SpannableStringBuilder sb = new SpannableStringBuilder(text);
+        for (String subString : subStrings) {
+            int index = text.toLowerCase().indexOf(subString.toLowerCase());
+            if (index != -1) {
+                sb.setSpan(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP
+                        ? new TypefaceSpan("sans-serif-medium")
+                        : new StyleSpan(android.graphics.Typeface.BOLD),
+                        index, index + subString.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            }
+        }
+        return sb;
     }
 
     private StringUtil() { }

@@ -121,12 +121,22 @@ window.onload = function() {
 var bridge = require("./bridge");
 var pagelib = require("wikimedia-page-library");
 
-bridge.registerListener( 'toggleDarkMode', function( payload ) {
+bridge.registerListener( 'setTheme', function( payload ) {
     var theme;
-
-    window.isDarkMode = !window.isDarkMode;
-
-    theme = window.isDarkMode ? pagelib.ThemeTransform.THEME.DARK : pagelib.ThemeTransform.THEME.DEFAULT;
+    switch (payload.theme) {
+        case 1:
+            theme = pagelib.ThemeTransform.THEME.DARK;
+            window.isDarkMode = true;
+            break;
+        case 2:
+            theme = pagelib.ThemeTransform.THEME.BLACK;
+            window.isDarkMode = true;
+            break;
+        default:
+            theme = pagelib.ThemeTransform.THEME.DEFAULT;
+            window.isDarkMode = false;
+            break;
+    }
     pagelib.ThemeTransform.setTheme( document, theme );
     pagelib.DimImagesTransform.dim( window, window.isDarkMode && payload.dimImages );
 } );
@@ -372,7 +382,10 @@ var CONSTRAINT = {
 
 // Theme to CSS classes.
 var THEME = {
-  DEFAULT: 'pagelib_theme_default', DARK: 'pagelib_theme_dark', SEPIA: 'pagelib_theme_sepia'
+  DEFAULT: 'pagelib_theme_default',
+  DARK: 'pagelib_theme_dark',
+  SEPIA: 'pagelib_theme_sepia',
+  BLACK: 'pagelib_theme_black'
 };
 
 /**
@@ -432,8 +445,12 @@ var classifyElements = function classifyElements(element) {
   /* en > Away colours > 793128975 */
   /* en > Manchester United F.C. > 793244653 */
   /* en > Pantone > 792312384 */
-  Polyfill.querySelectorAll(element, 'div.color_swatch div, div[style*="position: absolute"]').forEach(function (div) {
-    div.classList.add(CONSTRAINT.DIV_DO_NOT_APPLY_BASELINE);
+  /* en > Wikipedia:Graphs_and_charts > 801754530 */
+  /* en > PepsiCo > 807406166 */
+  /* en > Lua_(programming_language) > 809310207 */
+  var selector = ['div.color_swatch div', 'div[style*="position: absolute"]', 'div.barbox table div[style*="background:"]', 'div.chart div[style*="background-color"]', 'div.chart ul li span[style*="background-color"]', 'span.legend-color', 'div.mw-highlight span', 'code.mw-highlight span'].join();
+  Polyfill.querySelectorAll(element, selector).forEach(function (element) {
+    return element.classList.add(CONSTRAINT.DIV_DO_NOT_APPLY_BASELINE);
   });
 };
 
@@ -456,45 +473,21 @@ var SECTION_TOGGLED_EVENT_TYPE = 'section-toggled';
  */
 var getTableHeader = function getTableHeader(element, pageTitle) {
   var thArray = [];
-
-  if (!element.children) {
-    return thArray;
-  }
-
-  for (var i = 0; i < element.children.length; i++) {
-    var el = element.children[i];
-
-    if (el.tagName === 'TH') {
-      // ok, we have a TH element!
-      // However, if it contains more than two links, then ignore it, because
-      // it will probably appear weird when rendered as plain text.
-      var aNodes = el.querySelectorAll('a');
-      // todo: these conditionals are very confusing. Rewrite by extracting a
-      //       method or simplify.
-      if (aNodes.length < 3) {
-        // todo: remove nonstandard Element.innerText usage
-        // Also ignore it if it's identical to the page title.
-        if ((el.innerText && el.innerText.length || el.textContent.length) > 0 && el.innerText !== pageTitle && el.textContent !== pageTitle && el.innerHTML !== pageTitle) {
-          thArray.push(el.innerText || el.textContent);
-        }
+  var headers = Polyfill.querySelectorAll(element, 'th');
+  for (var i = 0; i < headers.length; ++i) {
+    var header = headers[i];
+    var anchors = Polyfill.querySelectorAll(header, 'a');
+    if (anchors.length < 3) {
+      // Also ignore it if it's identical to the page title.
+      if ((header.textContent && header.textContent.length) > 0 && header.textContent !== pageTitle && header.innerHTML !== pageTitle) {
+        thArray.push(header.textContent);
       }
     }
-
-    // if it's a table within a table, don't worry about it
-    if (el.tagName === 'TABLE') {
-      continue;
-    }
-
-    // todo: why do we need to recurse?
-    // recurse into children of this element
-    var ret = getTableHeader(el, pageTitle);
-
-    // did we get a list of TH from this child?
-    if (ret.length > 0) {
-      thArray = thArray.concat(ret);
+    if (thArray.length === 2) {
+      // 'newCaption' only ever uses the first 2 items.
+      break;
     }
   }
-
   return thArray;
 };
 
@@ -505,15 +498,12 @@ var getTableHeader = function getTableHeader(element, pageTitle) {
  */
 
 /**
- * Ex: toggleCollapseClickCallback.bind(el, (container) => {
- *       window.scrollTo(0, container.offsetTop - transformer.getDecorOffset())
- *     })
- * @this HTMLElement
+ * @param {!Element} container div
+ * @param {?Element} trigger element that was clicked or tapped
  * @param {?FooterDivClickCallback} footerDivClickCallback
  * @return {boolean} true if collapsed, false if expanded.
  */
-var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDivClickCallback) {
-  var container = this.parentNode;
+var toggleCollapsedForContainer = function toggleCollapsedForContainer(container, trigger, footerDivClickCallback) {
   var header = container.children[0];
   var table = container.children[1];
   var footer = container.children[2];
@@ -529,7 +519,7 @@ var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDiv
     }
     footer.style.display = 'none';
     // if they clicked the bottom div, then scroll back up to the top of the table.
-    if (this === footer && footerDivClickCallback) {
+    if (trigger === footer && footerDivClickCallback) {
       footerDivClickCallback(container);
     }
   } else {
@@ -543,6 +533,19 @@ var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDiv
     footer.style.display = 'block';
   }
   return collapsed;
+};
+
+/**
+ * Ex: toggleCollapseClickCallback.bind(el, (container) => {
+ *       window.scrollTo(0, container.offsetTop - transformer.getDecorOffset())
+ *     })
+ * @this HTMLElement
+ * @param {?FooterDivClickCallback} footerDivClickCallback
+ * @return {boolean} true if collapsed, false if expanded.
+ */
+var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDivClickCallback) {
+  var container = this.parentNode;
+  return toggleCollapsedForContainer(container, this, footerDivClickCallback);
 };
 
 /**
@@ -619,13 +622,14 @@ var newCaption = function newCaption(title, headerText) {
  * @param {!Element} content
  * @param {?string} pageTitle
  * @param {?boolean} isMainPage
+ * @param {?boolean} isInitiallyCollapsed
  * @param {?string} infoboxTitle
  * @param {?string} otherTitle
  * @param {?string} footerTitle
  * @param {?FooterDivClickCallback} footerDivClickCallback
  * @return {void}
  */
-var collapseTables = function collapseTables(window, content, pageTitle, isMainPage, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback) {
+var adjustTables = function adjustTables(window, content, pageTitle, isMainPage, isInitiallyCollapsed, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback) {
   if (isMainPage) {
     return;
   }
@@ -689,6 +693,10 @@ var collapseTables = function collapseTables(window, content, pageTitle, isMainP
       var collapsed = toggleCollapseClickCallback.bind(collapsedFooterDiv, footerDivClickCallback)();
       dispatchSectionToggledEvent(collapsed);
     };
+
+    if (!isInitiallyCollapsed) {
+      toggleCollapsedForContainer(containerDiv);
+    }
   };
 
   for (var i = 0; i < tables.length; ++i) {
@@ -696,6 +704,21 @@ var collapseTables = function collapseTables(window, content, pageTitle, isMainP
 
     if (_ret === 'continue') continue;
   }
+};
+
+/**
+ * @param {!Window} window
+ * @param {!Element} content
+ * @param {?string} pageTitle
+ * @param {?boolean} isMainPage
+ * @param {?string} infoboxTitle
+ * @param {?string} otherTitle
+ * @param {?string} footerTitle
+ * @param {?FooterDivClickCallback} footerDivClickCallback
+ * @return {void}
+ */
+var collapseTables = function collapseTables(window, content, pageTitle, isMainPage, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback) {
+  adjustTables(window, content, pageTitle, isMainPage, true, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback);
 };
 
 /**
@@ -726,6 +749,7 @@ var CollapseTable = {
   SECTION_TOGGLED_EVENT_TYPE: SECTION_TOGGLED_EVENT_TYPE,
   toggleCollapseClickCallback: toggleCollapseClickCallback,
   collapseTables: collapseTables,
+  adjustTables: adjustTables,
   expandCollapsedTableIfItContainsElement: expandCollapsedTableIfItContainsElement,
   test: {
     getTableHeader: getTableHeader,
@@ -1192,7 +1216,8 @@ var MenuItemType = {
   lastEdited: 2,
   pageIssues: 3,
   disambiguation: 4,
-  coordinate: 5
+  coordinate: 5,
+  talkPage: 6
 };
 
 /**
@@ -1654,7 +1679,7 @@ var updateSaveButtonBookmarkIcon = function updateSaveButtonBookmarkIcon(button,
  * @return {void}
 */
 var updateSaveButtonForTitle = function updateSaveButtonForTitle(title, text, isSaved, document) {
-  var saveButton = document.getElementById('' + SAVE_BUTTON_ID_PREFIX + title);
+  var saveButton = document.getElementById('' + SAVE_BUTTON_ID_PREFIX + encodeURI(title));
   saveButton.innerText = text;
   saveButton.title = text;
   updateSaveButtonBookmarkIcon(saveButton, isSaved);
@@ -1946,7 +1971,8 @@ var IMAGE_LOADED_CLASS = 'pagelib_lazy_load_image_loaded'; // Download completed
 
 // Attributes copied from images to placeholders via data-* attributes for later restoration. The
 // image's classes and dimensions are also set on the placeholder.
-var COPY_ATTRIBUTES = ['class', 'style', 'src', 'srcset', 'width', 'height', 'alt'];
+// The 3 data-* items are used by iOS.
+var COPY_ATTRIBUTES = ['class', 'style', 'src', 'srcset', 'width', 'height', 'alt', 'data-file-width', 'data-file-height', 'data-image-gallery'];
 
 // Small images, especially icons, are quickly downloaded and may appear in many places. Lazily
 // loading these images degrades the experience with little gain. Always eagerly load these images.
@@ -2367,24 +2393,99 @@ var RedLinks = {
 };
 
 /**
+ * Gets array of ancestors of element which need widening.
+ * @param  {!HTMLElement} element
+ * @return {!Array.<HTMLElement>} Zero length array is returned if no elements should be widened.
+ */
+var ancestorsToWiden = function ancestorsToWiden(element) {
+  var widenThese = [];
+  var el = element;
+  while (el.parentNode) {
+    el = el.parentNode;
+    // No need to walk above 'content_block'.
+    if (el.classList.contains('content_block')) {
+      break;
+    }
+    widenThese.push(el);
+  }
+  return widenThese;
+};
+
+/**
+ * Sets style value.
+ * @param {!CSSStyleDeclaration} style
+ * @param {!string} key
+ * @param {*} value
+ * @return {void}
+ */
+var updateStyleValue = function updateStyleValue(style, key, value) {
+  style[key] = value;
+};
+
+/**
+ * Sets style value only if value for given key already exists.
+ * @param {CSSStyleDeclaration} style
+ * @param {!string} key
+ * @param {*} value
+ * @return {void}
+ */
+var updateExistingStyleValue = function updateExistingStyleValue(style, key, value) {
+  var valueExists = Boolean(style[key]);
+  if (valueExists) {
+    updateStyleValue(style, key, value);
+  }
+};
+
+/**
+ * Image widening CSS key/value pairs.
+ * @type {Object}
+ */
+var styleWideningKeysAndValues = {
+  width: '100%',
+  height: 'auto',
+  maxWidth: '100%',
+  float: 'none'
+};
+
+/**
+ * Perform widening on an element. Certain style properties are updated, but only if existing values
+ * for these properties already exist.
+ * @param  {!HTMLElement} element
+ * @return {void}
+ */
+var widenElementByUpdatingExistingStyles = function widenElementByUpdatingExistingStyles(element) {
+  Object.keys(styleWideningKeysAndValues).forEach(function (key) {
+    return updateExistingStyleValue(element.style, key, styleWideningKeysAndValues[key]);
+  });
+};
+
+/**
+ * Perform widening on an element.
+ * @param  {!HTMLElement} element
+ * @return {void}
+ */
+var widenElementByUpdatingStyles = function widenElementByUpdatingStyles(element) {
+  Object.keys(styleWideningKeysAndValues).forEach(function (key) {
+    return updateStyleValue(element.style, key, styleWideningKeysAndValues[key]);
+  });
+};
+
+/**
  * To widen an image element a css class called 'pagelib_widen_image_override' is applied to the
  * image element, however, ancestors of the image element can prevent the widening from taking
  * effect. This method makes minimal adjustments to ancestors of the image element being widened so
  * the image widening can take effect.
- * @param  {!HTMLElement} el Element whose ancestors will be widened
+ * @param  {!HTMLElement} element Element whose ancestors will be widened
  * @return {void}
  */
-var widenAncestors = function widenAncestors(el) {
-  for (var parentElement = el.parentElement; parentElement && !parentElement.classList.contains('content_block'); parentElement = parentElement.parentElement) {
-    if (parentElement.style.width) {
-      parentElement.style.width = '100%';
-    }
-    if (parentElement.style.maxWidth) {
-      parentElement.style.maxWidth = '100%';
-    }
-    if (parentElement.style.float) {
-      parentElement.style.float = 'none';
-    }
+var widenAncestors = function widenAncestors(element) {
+  ancestorsToWiden(element).forEach(widenElementByUpdatingExistingStyles);
+
+  // Without forcing widening on the parent anchor, lazy image loading placeholders
+  // aren't correctly widened on iOS for some reason.
+  var parentAnchor = elementUtilities.findClosestAncestor(element, 'a.image');
+  if (parentAnchor) {
+    widenElementByUpdatingStyles(parentAnchor);
   }
 };
 
@@ -2452,8 +2553,12 @@ var maybeWidenImage = function maybeWidenImage(image) {
 var WidenImage = {
   maybeWidenImage: maybeWidenImage,
   test: {
+    ancestorsToWiden: ancestorsToWiden,
     shouldWidenImage: shouldWidenImage,
-    widenAncestors: widenAncestors
+    updateExistingStyleValue: updateExistingStyleValue,
+    widenAncestors: widenAncestors,
+    widenElementByUpdatingExistingStyles: widenElementByUpdatingExistingStyles,
+    widenElementByUpdatingStyles: widenElementByUpdatingStyles
   }
 };
 

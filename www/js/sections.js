@@ -19,11 +19,11 @@ bridge.registerListener( "setMargins", function( payload ) {
 });
 
 bridge.registerListener( "setPaddingTop", function( payload ) {
-    document.getElementById( "content" ).style.paddingTop = payload.paddingTop + "px";
+    document.body.style.paddingTop = payload.paddingTop + "px";
 });
 
 bridge.registerListener( "setPaddingBottom", function( payload ) {
-    document.getElementById( "content" ).style.paddingBottom = payload.paddingBottom + "px";
+    document.body.style.paddingBottom = payload.paddingBottom + "px";
 });
 
 bridge.registerListener( "beginNewPage", function( payload ) {
@@ -80,7 +80,7 @@ function setWindowAttributes( payload ) {
     window.fromRestBase = payload.fromRestBase;
     window.isBeta = payload.isBeta;
     window.siteLanguage = payload.siteLanguage;
-    window.isNetworkMetered = payload.isNetworkMetered;
+    window.showImages = payload.showImages;
 }
 
 function setTitleElement( parentNode ) {
@@ -165,6 +165,10 @@ function elementsForSection( section ) {
 }
 
 function applySectionTransforms( content, isLeadSection ) {
+    if (!window.showImages) {
+        transformer.transform( "hideImages", content );
+    }
+
     if (!window.fromRestBase) {
         // Content service transformations
         if (isLeadSection) {
@@ -184,10 +188,7 @@ function applySectionTransforms( content, isLeadSection ) {
     }
     if (!window.isMainPage) {
         transformer.transform( "hideTables", content );
-
-        if (!window.isNetworkMetered) {
-            transformer.transform( "widenImages", content );
-        }
+        transformer.transform( "widenImages", content );
 
         if (!window.isFilePage) {
             lazyLoadTransformer.convertImagesToPlaceholders( content );
@@ -282,10 +283,19 @@ bridge.registerListener( "displayFromZim", function( payload ) {
     clearContents();
     setWindowAttributes(payload);
     window.isOffline = true;
+    window.mainPageHint = payload.mainPageHint;
     window.offlineContentProvider = payload.offlineContentProvider;
 
     var contentElem = document.getElementById( "content" );
     setTitleElement(contentElem);
+
+    if (window.isMainPage) {
+        // TODO: remove this when the actual Main Pages in ZIM files contain more descriptive content.
+        var helperDiv = document.createElement( "div" );
+        helperDiv.innerHTML = window.mainPageHint;
+        helperDiv.style = "font-size: 85%; margin: 12px 0 20px 0; padding: 12px; line-height: 120%; background-color: rgba(0, 0, 0, 0.04); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 2px;";
+        contentElem.appendChild( helperDiv );
+    }
 
     var issuesContainer = setIssuesElement(contentElem);
 
@@ -438,16 +448,21 @@ function scrollToSection( anchor ) {
     }
 }
 
-bridge.registerListener( "scrollToBottom", function () {
-    window.scrollTo(0, document.body.scrollHeight);
+bridge.registerListener( "scrollToBottom", function ( payload ) {
+    window.scrollTo(0, document.body.scrollHeight - payload.offset - transformer.getDecorOffset());
 });
 
 /**
- * Returns the section id of the section that has the header closest to but above midpoint of screen
+ * Returns the section id of the section that has the header closest to but above midpoint of screen,
+ * or -1 if the page is scrolled all the way to the bottom (i.e. native bottom content should be shown).
  */
 function getCurrentSection() {
     var sectionHeaders = document.getElementsByClassName( "section_heading" );
+    var bottomDiv = document.getElementById( "bottom_stopper" );
     var topCutoff = window.scrollY + ( document.documentElement.clientHeight / 2 );
+    if (topCutoff > bottomDiv.offsetTop) {
+        return -1;
+    }
     var curClosest = null;
     for ( var i = 0; i < sectionHeaders.length; i++ ) {
         var el = sectionHeaders[i];

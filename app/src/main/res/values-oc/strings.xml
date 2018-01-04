@@ -254,7 +254,7 @@
   <string name="view_continue_reading_card_title">Contunhar de legir</string>
   <string name="view_because_you_read_card_title">Perque avètz legit</string>
   <string name="view_random_card_title">A l\'azard</string>
-  <string name="view_random_card_subtitle">Legissètz un article de la Wikipèdia a l\'azard</string>
+  <string name="view_random_card_subtitle" fuzzy="true">Legissètz un article de la Wikipèdia a l\'azard</string>
   <string name="view_main_page_card_title">Uèi sus Wikipèdia</string>
   <string name="view_main_page_card_subtitle">Pagina principala lo %s</string>
   <string name="view_featured_image_card_title">Imatge del jorn</string>
@@ -268,11 +268,11 @@
   <string name="most_read_list_card_title">Tendéncia</string>
   <string name="view_static_card_icon_content_description">Icòna de la carta</string>
   <string name="view_card_news_title">Dins l’actualitat</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
     <item quantity="one">Ièr</item>
     <item quantity="other">I a %d jorns</item>
   </plurals>
-  <string name="view_continue_reading_card_subtitle_today">Uèi</string>
+  <string name="view_continue_reading_card_subtitle_today" fuzzy="true">Uèi</string>
   <string name="view_announcement_card_negative_action">Non mercé</string>
   <string name="description_edit_text_hint">Descripcion del títol</string>
   <string name="description_edit_save">Publicar</string>

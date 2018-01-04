@@ -42,6 +42,9 @@
   <string name="nearby_osm_license">&amp;copy; &amp;nbsp;&lt;a href=\"https://www.openstreetmap.org/copyright/\"&gt;開放街圖&lt;/a&gt;貢獻者</string>
   <string name="last_updated_text">最後更新時間：%s</string>
   <string name="talk_page_link_text">討論</string>
+  <string name="edit_history_link_text">編輯歷史</string>
+  <string name="map_view_link_text">在地圖上檢視</string>
+  <string name="language_count_link_text">在 %d 種其他語言中可用</string>
   <string name="content_license_html">除非另有註明，否則頁面內容均以 &lt;a href=\"%1$s\"&gt;CC BY-SA 3.0&lt;/A&gt; 條款授權</string>
   <string name="edit_save_action_license_logged_in">儲存後，表示您同意我們的&lt;a href=\"%1$s\"&gt;使用條款&lt;/a&gt;。同時您同意依據&lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt;授權您的貢獻。</string>
   <string name="edit_save_action_license_anon">儲存後，表示您同意我們的&lt;a href=\"%1$s\"&gt;使用條款&lt;/A&gt;。同時您同意依據&lt;a href=\"%2$s/\"&gt;CC BY-SA 3.0&lt;/a&gt;授權您的貢獻。編輯行為將會計入裝置的 IP 位址。&lt;a href=\"https://#login\"&gt;登入&lt;/a&gt;後私密性將增強。</string>
@@ -85,7 +88,7 @@
   <string name="toast_logout_complete">已登出</string>
   <string name="history_empty_title">沒有近期檢視的頁面</string>
   <string name="history_empty_message">追蹤您在此讀過的內容。</string>
-  <string name="search_empty_message">以您的語言來搜尋、閱讀自由的百科全書</string>
+  <string name="search_empty_message">以您的語言來搜尋閱讀自由的百科全書</string>
   <string name="delete_selected_items">刪除所選項目</string>
   <string name="wp_stylized">&lt;big&gt;維&lt;/big&gt;基百&lt;big&gt;科&lt;/big&gt;</string>
   <string name="create_account_username_hint">使用者名稱</string>
@@ -107,11 +110,11 @@
   <string name="preferences_general_heading">一般</string>
   <string name="wikipedia_app_faq">維基百科應用程式常見問題</string>
   <string name="zero_charged_verbiage">免費訪問維基百科功能已不再提供。</string>
-  <string name="zero_warn_when_leaving">離開 Wikipedia Zero 時提示</string>
-  <string name="zero_warn_when_leaving_summary">如果您的行動網路業者與 Wikipedia Zero 有合作夥伴關係，並且免除存取維基百科應用程式時的資料費用，請勾選此設定以幫助您知道您正在離開維基百科並可能被收取費用。</string>
-  <string name="zero_webpage_title">Wikipedia Zero 常見問題</string>
-  <string name="zero_wikipedia_zero_heading">Wikipedia Zero</string>
-  <string name="zero_interstitial_title">離開 Wikipedia Zero</string>
+  <string name="zero_warn_when_leaving">離開維基百科零計劃時警告</string>
+  <string name="zero_warn_when_leaving_summary">如果您的行動網路業者與維基百科零計劃有合作夥伴關係，並且免除存取維基百科應用程式時的資料費用，請勾選此設定以幫助您知道您正在離開維基百科並可能被收取費用。</string>
+  <string name="zero_webpage_title">維基百科零計劃常見問題</string>
+  <string name="zero_wikipedia_zero_heading">維基百科零計劃</string>
+  <string name="zero_interstitial_title">離開維基百科零計劃</string>
   <string name="zero_interstitial_leave_app">可能會收資料費用。繼續前往至外部網站嗎？</string>
   <string name="zero_interstitial_continue">離開</string>
   <string name="zero_interstitial_cancel">留在這裡</string>
@@ -128,7 +131,7 @@
   <string name="preference_title_eventlogging_opt_in">傳送使用情況報告</string>
   <string name="preference_summary_eventlogging_opt_in">允許維基媒體收集有關您如何使用該應用程式使應用程式更好的資訊</string>
   <string name="preference_title_auto_upload_crash_reports">傳送損毀報告</string>
-  <string name="preference_summary_auto_upload_crash_reports">允許手機應用程式自動傳送錯誤報告至 HockeyApp / 第三方服務提供者，以讓我們可以更快速、更簡易的檢閱錯誤報告及修復問題。</string>
+  <string name="preference_summary_auto_upload_crash_reports">允許手機應用程式自動傳送錯誤報告至 HockeyApp / 第三方服務提供者，以讓我們可以更快速、更簡易地來檢閱錯誤報告及修復問題。</string>
   <string name="editing_error_spamblacklist">檢測到來自被封鎖網域 (%s) 的連結。請刪除它們並再試一次。</string>
   <string name="history_search_list_hint">搜尋歷史</string>
   <string name="error_can_not_process_link">無法顯示此連結</string>
@@ -143,7 +146,9 @@
   <string name="about_description">關於維基百科應用程式</string>
   <string name="privacy_policy_description">隱私政策</string>
   <string name="terms_of_use_description">使用條款</string>
+  <string name="about_wikipedia_url">https://zh.m.wikipedia.org/wiki/Wikipedia:關於</string>
   <string name="privacy_policy_url" fuzzy="true">https://wikimediafoundation.org/wiki/Privacy_Policy</string>
+  <string name="offline_reading_and_data_url">https://www.mediawiki.org/wiki/Wikimedia_Apps/Android_FAQ#Offline_reading_and_data</string>
   <string name="terms_of_use_url">https://wikimediafoundation.org/wiki/Terms_of_Use</string>
   <string name="cc_by_sa_3_url">https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW</string>
   <string name="cc_0_url">https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW</string>
@@ -172,6 +177,8 @@
   <string name="edit_summary_tag_other_hint">您改善頁面的其他方式</string>
   <string name="find_next">尋找下一筆</string>
   <string name="find_previous">尋找上一筆</string>
+  <string name="find_first_occurence">這是首次出現</string>
+  <string name="find_last_occurence">這是最後出現</string>
   <string name="abusefilter_title_warn">這可能是沒有建設性的編輯。確定要發佈嗎？</string>
   <string name="abusefilter_title_disallow">不能發佈此編輯。請返回並修正。</string>
   <string name="abusefilter_text_warn">自動過濾器認為您的編輯缺乏建設性。 可能由於編輯中包含以下之一：&lt;br /&gt;&lt;br /&gt;· 全部使用大寫字母&lt;br /&gt;· 空白的文章內容或含有垃圾訊息&lt;br /&gt;· 含有無關的外部連結或圖片&lt;br /&gt;· 重複的文字</string>
@@ -200,6 +207,7 @@
   <string name="preference_title_show_images">顯示圖片</string>
   <string name="preference_summary_show_images">在頁面中開啟或停用圖片載入。如果您的網路連線很慢，或如果您的資料流量計劃受限制，則取消選擇本設定。</string>
   <string name="read_more_section">延伸閱讀</string>
+  <string name="about_article_section">關於此條目</string>
   <string name="menu_gallery_visit_page">前往檔案頁面</string>
   <string name="gallery_error_draw_failed">無法產生圖片。</string>
   <string name="license_title">%s 的授權條款</string>
@@ -258,13 +266,15 @@
   <string name="error_page_does_not_exist">此頁面不存在</string>
   <string name="view_wiki_error_message_offline">無法連接網路</string>
   <string name="reference_title">參考資料 %s</string>
-  <string name="preference_title_dim_dark_mode_images">在暗黑主題調暗圖片</string>
-  <string name="preference_summary_dim_dark_mode_images">當使用暗黑主題時減少圖片亮度</string>
-  <string name="theme_chooser_dialog_image_dimming_switch_label">調暗圖片（在暗黑主題）</string>
-  <string name="preference_title_prefer_offline_content">離線內容優先</string>
-  <string name="preference_summary_prefer_offline_content">依載入可用在離線狀況下的條目；優先於最新版本條目來儲存資料使用量</string>
+  <string name="preference_title_dim_dark_mode_images">在陰暗主題調暗圖片</string>
+  <string name="preference_summary_dim_dark_mode_images">當使用陰暗主題時減少圖片亮度</string>
+  <string name="theme_chooser_dialog_image_dimming_switch_label">調暗圖片（在陰暗主題）</string>
+  <string name="preference_title_prefer_offline_content">首選離線內容</string>
+  <string name="preference_summary_prefer_offline_content">透過載入離線狀況下可用條目的儲存資料使用，而不必每次載入條目的最新版本</string>
+  <string name="preference_title_enable_offline_library">啟用離線圖書館</string>
+  <string name="preference_summary_enable_offline_library">存取已下載到您裝置的維基百科條目包（以 .ZIM 檔案格式顯示）能讓您處於離線狀態時仍可進行閱讀。&lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;了解更多&lt;/a&gt;</string>
   <string name="crash_report_dialog_title">很抱歉，應用程式上次發生了錯誤</string>
-  <string name="crash_report_dialog_text">您是否想要傳送錯誤報告至 HockeyApp / 第三方服務提供者，以讓維基媒體可以更快速、更簡易的檢閱告修復由此產生的問題？</string>
+  <string name="crash_report_dialog_text">您是否想要傳送錯誤報告至 HockeyApp / 第三方服務提供者，以讓維基媒體能夠檢視您的錯誤，並修正造成問題的程式臭蟲？</string>
   <string name="crash_report_dialog_dont_send_button">略過</string>
   <string name="crash_report_dialog_always_send_button">必定傳送</string>
   <string name="crash_report_dialog_send_button">傳送</string>
@@ -278,10 +288,14 @@
   <string name="article_header_edit_description">編輯標題說明</string>
   <string name="article_header_edit_lead_section">編輯簡介</string>
   <string name="color_theme_select">主題</string>
-  <string name="color_theme_light">日間模式</string>
-  <string name="color_theme_dark">暗黑</string>
-  <string name="preference_title_color_theme">暗黑主題</string>
-  <string name="preference_summary_color_theme">切換到使用應用程式的暗黑色彩主題</string>
+  <string name="color_theme_light">明亮</string>
+  <string name="color_theme_dark">陰暗</string>
+  <string name="color_theme_black">漆黑</string>
+  <string name="color_theme_test_title">試樣文字</string>
+  <string name="color_theme_test_text">拖拉滑標來變更使用在閱讀條目的文字大小。要設定應用程式外其餘文字大小，請變更您的系統文字大小。</string>
+  <string name="preference_title_app_theme">套用主題</string>
+  <string name="preference_title_color_theme">陰暗主題</string>
+  <string name="preference_summary_color_theme">切換到使用應用程式的陰暗色彩主題</string>
   <string name="text_size_increase">增加文字大小</string>
   <string name="text_size_decrease">增少文字大小</string>
   <string name="text_size_percent_default">%s（預設）</string>
@@ -365,12 +379,22 @@
   <string name="notification_reverted">您在條目&lt;strong&gt;%2$s&lt;/strong&gt;的編輯被 &lt;em&gt;%1$s&lt;/em&gt;給回退。</string>
   <string name="notification_thanks_title">有人對您表示感謝！</string>
   <string name="notification_thanks">&lt;em&gt;%1$s&lt;/em&gt;感謝您在&lt;strong&gt;%2$s&lt;/strong&gt;頁面作出的編輯</string>
+  <string name="notification_channel_name">同步</string>
+  <string name="notification_channel_description">同步進程</string>
+  <string name="notification_syncing_title">同步 %1$d 個條目…</string>
+  <string name="notification_syncing_description">剩下 %1$d 個條目</string>
+  <string name="notification_syncing_pause_button">暫停</string>
+  <string name="notification_syncing_resume_button">繼續</string>
+  <string name="notification_syncing_cancel_button">取消</string>
   <string name="view_continue_reading_card_title">繼續閱讀</string>
-  <string name="view_because_you_read_card_title">因為您讀了</string>
+  <string name="view_because_you_read_card_title">您曾閱讀過的</string>
   <string name="view_random_card_title">隨機條目產生器</string>
-  <string name="view_random_card_subtitle">閱讀來自維基百科的隨機條目</string>
+  <string name="view_random_card_subtitle">快速翻閱來自維基百科的隨機條目。</string>
+  <string name="view_random_card_action">擲骰產生</string>
+  <string name="view_next_random_article">載入另一個隨機條目</string>
   <string name="view_main_page_card_title">維基百科今日</string>
   <string name="view_main_page_card_subtitle">%s 首頁</string>
+  <string name="view_main_page_card_action">檢視主頁面</string>
   <string name="view_featured_image_card_title">每日圖片</string>
   <string name="view_featured_image_card_download">下載</string>
   <string name="menu_feed_card_dismiss">隱藏此卡片</string>
@@ -387,11 +411,28 @@
     <item quantity="other">%d 日前</item>
   </plurals>
   <string name="view_continue_reading_card_subtitle_today">今天</string>
+  <string name="view_continue_reading_card_subtitle_read_date">讀取 %s</string>
   <string name="view_announcement_card_negative_action">不用了，謝謝</string>
   <string name="view_offline_card_text">內容無法在離線時載入。</string>
   <string name="view_featured_article_card_title">典範條目</string>
   <string name="view_featured_article_footer_save_button_label">儲存</string>
   <string name="view_featured_article_footer_saved_button_label">已儲存</string>
+  <string name="feed_configure_menu_title">設置卡片</string>
+  <string name="feed_configure_activity_title">設置訊息來源</string>
+  <string name="feed_configure_menu_reset">重新設定預設檢視</string>
+  <string name="feed_configure_menu_select_all">選擇全部</string>
+  <string name="feed_configure_menu_deselect_all">取消全選</string>
+  <string name="feed_item_type_news">有關目前事件的條目</string>
+  <string name="feed_item_type_on_this_day">在歷史上的今天之事件</string>
+  <string name="feed_item_type_continue_reading">快速連結返回至您分頁裡來閱讀一個所開啓條目</string>
+  <string name="feed_item_type_because_you_read">基於在您的歷史裡近期所閱讀條目之建設</string>
+  <string name="feed_item_type_featured_article">在維基百科上的每日典範條目</string>
+  <string name="feed_item_type_trending">每日最多瀏覽的條目</string>
+  <string name="feed_item_type_featured_image">來自維基共享資源的每日特色圖片</string>
+  <string name="feed_item_type_main_page">帶有每日特色內容的維基百科首頁</string>
+  <string name="feed_item_type_randomizer">產生隨機條目來閱讀</string>
+  <string name="feed_configure_onboarding_action">自訂</string>
+  <string name="feed_configure_onboarding_text">&lt;strong&gt;自訂您的探索來源&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;您現在可在您的探索來源裡挑選出所要顯示內容，並且可以排序您所喜愛的內容種類。</string>
   <string name="description_edit_text_hint">標題說明</string>
   <string name="description_edit_save">發佈</string>
   <string name="description_edit_add_description">增加標題說明</string>
@@ -425,7 +466,7 @@
   <string name="description_edit_help_tips_example2">地球第一高峰</string>
   <string name="description_edit_help_tips_example2_hint">有關聖母峰條目的標題說明</string>
   <string name="description_edit_help_more_info">更多資訊</string>
-  <string name="description_edit_help_meta_info">描述會保管在維基數據，那是維基媒體基金會計畫的另一個專案；其為自由、共同作業、多語言的二級資料庫，為維基百科及其他相類專案提供支援。</string>
+  <string name="description_edit_help_meta_info">描述會被保管在維基數據，那是維基媒體基金會計畫的另一個專案，是個自由、共同作業，多語言的二級資料庫，支援著維基百科及其他相類專案。</string>
   <string name="description_edit_revert_subtitle">感謝編輯維基百科！</string>
   <string name="description_edit_revert_intro">我們知道您已盡力了，但有編者不認同而做出還原。您的編輯被回退的原因可能是：</string>
   <string name="description_edit_revert_reason1">您的貢獻並未遵循&lt;a href=\"%1$s\"&gt;指引&lt;/a&gt;之一。</string>
@@ -435,13 +476,14 @@
   <string name="offline_read_permission_rationale">需要可在您裝置上儲存庫的權限才能離線瀏覽。</string>
   <string name="offline_read_permission_error">未授予從裝置儲存庫讀取的權限。</string>
   <string name="offline_card_text">您正在您的離線圖書館瀏覽離線維基百科條目。</string>
+  <string name="offline_card_sideloading_text">您正在您的離線圖書館瀏覽來自於條目包的離線維基百科。</string>
   <string name="offline_my_compilations">管理我的離線圖書館</string>
   <string name="offline_compilations_title">離線圖書館</string>
   <string name="offline_compilations_search_by_name">依條目包來搜尋匯編</string>
-  <string name="offline_compilations_found_count">我的離線圖書館（%d）</string>
+  <string name="offline_compilations_found_count">在我的離線圖書館（%d）</string>
   <string name="offline_compilations_add">添加至我的離線圖書館</string>
   <string name="remote_compilations_title">離線圖書館</string>
-  <string name="remote_compilations_description">透過離線圖書館；讓您可現在就下載條目包於無法使用網路情況下閱讀內容。</string>
+  <string name="remote_compilations_description">透過離線圖書館，來讓您可現在就下載條目包於無法使用網路情況下閱讀內容。</string>
   <string name="offline_compilation_detail_date_size">%1$s • %2$.2f GB</string>
   <string name="offline_compilation_detail_button_download">下載 • %.2f GB</string>
   <string name="offline_compilation_detail_button_remove">移除</string>
@@ -465,6 +507,9 @@
   <string name="offline_library_title">離線圖書館</string>
   <string name="offline_library_empty_title">您的離線圖書館裡無任何事物</string>
   <string name="offline_library_empty_description">現在就挑選維基百科的條目包來下載，這可讓您事後自由存取資料。</string>
+  <string name="offline_library_empty_description_sideload">在您離線圖書館裡的「條目包」，是種事先打包好的條目集合，可在您的裝置方便儲存，這可讓您在離線時繼續閱讀。&lt;br /&gt;&lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;了解更多&lt;/a&gt;</string>
+  <string name="offline_library_packs_hint">在您圖書館裡的條目包能讓您在離線時仍可繼續閱讀。&lt;a href=\"https://www.mediawiki.org/wiki/Wikimedia_Apps/Offline_support\"&gt;了解更多&lt;/a&gt;</string>
+  <string name="offline_library_data_usage_hint">想要儲存在資料用量裡？在設定裡的「首選離線內容」來挑選出即使是在已連線狀態下，優先顯示出的離線條目。&lt;a href=\"#settings\"&gt;前往設定&lt;/a&gt;</string>
   <string name="offline_library_empty_search">搜尋離線圖書館</string>
   <string name="offline_library_search_results_state">從您的離線圖書館來搜尋結果</string>
   <string name="offline_library_onboarding_action">了解更多</string>
@@ -476,20 +521,39 @@
   <string name="offline_library_onboarding_uninterrupted_reading_subtitle">當您無法存取網路時，在您的離線圖書館上保持閱讀和條目搜尋。</string>
   <string name="offline_library_onboarding_store_knowledge_title">儲存更多知識</string>
   <string name="offline_library_onboarding_store_knowledge_subtitle">僅可能下載您裝置能處理的維基百科內容。離線圖書館也可在額外儲存庫上存取條目包。</string>
+  <string name="offline_library_main_page_hint_html">此主頁面提供此條目包概要內容。&lt;br /&gt;&lt;br /&gt;您也可以於您的離線圖書館裡搜尋在離線時的可用條目，來探索任何條目包內容。</string>
   <string name="onboarding_skip">略過</string>
   <string name="onboarding_continue">繼續</string>
   <string name="onboarding_get_started">入門</string>
+  <string name="onboarding_welcome_title">自由的百科全書</string>
+  <string name="onboarding_welcome_text">維基百科是透過志願者們所協作編寫，並且包含超過 4000 多萬條，以將近 300 種語言所建立的條目。&lt;a href=\"#about\"&gt;了解更多&lt;/a&gt;</string>
   <string name="onboarding_explore_title">探索的新方法</string>
-  <string name="onboarding_explore_text">在探索訊息來源裡發掘典範條目、熱門主題，和閱讀建議。</string>
+  <string name="onboarding_explore_text">一腳跳進不斷更新探索訊息來源的維基百科兔子洞裡頭。&lt;br/&gt; &lt;b&gt;自行定義&lt;/b&gt;訊息來源在您感興趣的項目 – 無論是在&lt;b&gt;歷史上的今天&lt;/b&gt;學習歷史事件，或是擲骰產生的&lt;b&gt;隨機&lt;/b&gt;內容。</string>
+  <string name="onboarding_save_to_reading_lists_title">儲存至閱讀清單</string>
+  <string name="onboarding_save_to_reading_lists_text">建立感興趣條目的閱讀清單，讓您即使在離線時也可閱讀。</string>
   <string name="onboarding_reading_list_sync_title">帶同步的閱讀清單</string>
-  <string name="onboarding_reading_list_sync_text">從條目建立閱讀清單可讓您於事後閱讀；即使您是在離線的狀態之下。&lt;a href=\"#login\"&gt;登入或建立&lt;/a&gt;您的維基百科帳號以維持您的閱讀清單備份。</string>
+  <string name="onboarding_reading_list_sync_text">從條目建立閱讀清單可讓您於事後閱讀，即使您是在離線的狀態之下。&lt;a href=\"#login\"&gt;登入或建立&lt;/a&gt;您的維基百科帳號以維持您的閱讀清單備份。</string>
   <string name="onboarding_analytics_title">寄送匿名資料</string>
   <string name="onboarding_analytics_text">請讓我們了解您是如何使用它，以讓應用程式能變得更好，另外資料收集都是採用匿名方式的。&lt;a href=\"#privacy\"&gt;了解更多&lt;/a&gt;</string>
+  <string name="onboarding_analytics_offline_text">請讓我們了解您是如何使用它，以讓應用程式能變得更好，另外資料收集都是採用匿名方式的。&lt;a href=\"#offline\"&gt;了解更多&lt;/a&gt;</string>
   <string name="onboarding_analytics_switch_title">傳送使用情況資料</string>
   <string name="onboarding_create_account_sync">同步您的閱讀清單</string>
   <string name="onboarding_create_account_contributions">保持追蹤您的貢獻</string>
   <string name="onboarding_create_account_preferences">儲存您的偏好設定</string>
+  <string name="onboarding_got_it">了解</string>
   <string name="app_shortcuts_random">隨機</string>
   <string name="app_shortcuts_continue_reading">繼續閱讀</string>
   <string name="app_shortcuts_search">搜尋</string>
+  <string name="more_trending_text">更多相似內容</string>
+  <string name="all_trending_text">在 %1$s 的所有趨勢條目</string>
+  <string name="top_on_this_day">在 %1$s 的熱門事物</string>
+  <string name="on_this_day_card_title">歷史上的今天</string>
+  <string name="more_events_text">更多歷史上的今天</string>
+  <string name="events_count_text">%2$s - %3$d 年間的 %1$s 個事件</string>
+  <string name="this_year">今年</string>
+  <string name="back_to_top">返回頂端</string>
+  <plurals name="diff_years">
+    <item quantity="one">去年</item>
+    <item quantity="other">%d 年前</item>
+  </plurals>
 </resources>

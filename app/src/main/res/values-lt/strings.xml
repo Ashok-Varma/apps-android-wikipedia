@@ -29,25 +29,25 @@
   <string name="menu_text_select_define">Nustatyti</string>
   <string name="menu_text_select_share">Dalintis</string>
   <string name="menu_text_select_edit_here">Keisti čia</string>
-  <string name="nav_item_nearby">Šalia</string>
+  <string name="nav_item_nearby">Netoliese</string>
   <string name="nearby_zoom_to_location">Priartinti vietą žemėlapyje</string>
   <string name="last_updated_text">Paskutinį kartą atnaujinta %s</string>
   <string name="talk_page_link_text">Aptarimas</string>
   <string name="content_license_html" fuzzy="true">Turinys prieinamas pagal &lt;a href=\"%1$s\"&gt;CC BY-SA 3.0&lt;/a&gt;, jei nenurodyta kitaip</string>
-  <string name="edit_save_action_license_logged_in">Išsaugodami jūs sutinkate su &lt;a href=\"%1$s\"&gt;naudojimosi sąlygomis&lt;/a&gt; ir neatšaukiamai skleisite savo indėlį po&lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt; licenciją.</string>
+  <string name="edit_save_action_license_logged_in">Išsaugodami jūs sutinkate su &lt;a href=\"%1$s\"&gt;naudojimosi sąlygomis&lt;/a&gt; ir neatšaukiamu savo indėlio paskelbimu pagal&lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt; licenciją.</string>
   <string name="preference_title_language">Vikipedijos kalba</string>
   <string name="preference_languages_filter_hint">Ieškoti</string>
   <string name="langlinks_filter_hint">Ieškoti</string>
   <string name="langlinks_empty">Šis puslapis nėra išverstas į kitas kalbas.</string>
   <string name="langlinks_no_match">Nerasta kalbų, atitinkančių jūsų užklausą.</string>
   <string name="langlinks_activity_title">Kitos kalbos</string>
-  <string name="menu_save_changes">Paskelbti Pakeitimus</string>
+  <string name="menu_save_changes">Paskelbti pakeitimus</string>
   <string name="dialog_saving_in_progress">Skelbiama...</string>
   <string name="edit_saved_successfully">Redagavimas paskelbtas!</string>
-  <string name="dialog_message_edit_failed">Redaguoti nepavyko!</string>
+  <string name="dialog_message_edit_failed">Išsaugoti nepavyko!</string>
   <string name="dialog_message_edit_failed_retry">Bandyti dar kartą</string>
   <string name="dialog_message_edit_failed_cancel">Atšaukti</string>
-  <string name="dialog_message_leaving_edit">Jūsų pakeitimai dar nebuvo įrašyti. Ar tikrai norite palikti šį puslapį?</string>
+  <string name="dialog_message_leaving_edit">Jūsų pakeitimai dar neišsaugoti. Ar tikrai norite palikti šį puslapį?</string>
   <string name="dialog_message_leaving_edit_leave">Išeiti</string>
   <string name="dialog_message_leaving_edit_stay">Likti</string>
   <string name="menu_show_toc">Turinys</string>
@@ -82,7 +82,7 @@
   <string name="create_account_next">Kitas</string>
   <string name="create_account_button">Kurti paskyrą</string>
   <string name="preferences_general_heading">Bendras</string>
-  <string name="wikipedia_app_faq">\"Wikipedia\" App DUK</string>
+  <string name="wikipedia_app_faq">Vikipedijos programėlės DUK</string>
   <string name="zero_charged_verbiage">Nemokama prieiga prie Vikipedijos nebėra aktyvi.</string>
   <string name="zero_warn_when_leaving">Įspėti paliekant „Vikipedija Zero“</string>
   <string name="zero_webpage_title">Vikipedija Zero DUK</string>
@@ -103,7 +103,7 @@
   <string name="preference_title_auto_upload_crash_reports">Siųsti strigčių ataskaitas</string>
   <string name="preference_summary_auto_upload_crash_reports">Leisti programėlei siųsti strigčių ataskaitas į „HockeyApp“ arba trečiosios šalies paslaugų teikėjams automatiškai, todėl mes galėsime peržiūrėti jūsų klaidas ir ištaisyti jas greičiau bei lengviau.</string>
   <string name="history_search_list_hint">Paieškos istorija</string>
-  <string name="error_can_not_process_link">Neina parodyti šios nuorodos</string>
+  <string name="error_can_not_process_link">Neįmanoma parodyti šios nuorodos</string>
   <string name="page_protected_autoconfirmed">Šis puslapis buvo pusiau saugomas.</string>
   <string name="page_protected_sysop">Šis puslapis buvo visiškai apsaugotas.</string>
   <string name="page_protected_can_not_edit" fuzzy="true">Jūs neturite teisių redaguoti šį puslapį</string>
@@ -165,10 +165,10 @@
   <string name="gallery_share_error">Negalima pasidalinti vaizdu: %s</string>
   <string name="gallery_save_progress">Siunčiamas failas…</string>
   <string name="gallery_save_success">Failas išsaugotas sėkmingai.</string>
-  <string name="gallery_error_video_failed">Negalima paleisti filmuko.</string>
+  <string name="gallery_error_video_failed">Negalima paleisti vaizdo įrašo.</string>
   <string name="err_cannot_save_file">Negalima įrašyti failų</string>
   <string name="snippet_share_intro">\"%1$s\" @Wikipedia: %2$s</string>
-  <string name="expand_refs">Bakstelėkite plėsti</string>
+  <string name="expand_refs">Bakstelėkite norėdami išplėsti</string>
   <string name="share_snippet_button">Dalintis kaip vaizdu</string>
   <string name="share_normal_button">Dalintis kaip tekstu</string>
   <string name="snippet_share_preview_image_desc">Peržiūrėti paveikslėlį</string>
@@ -222,6 +222,9 @@
   <string name="color_theme_select">Tema</string>
   <string name="color_theme_light">Šviesi</string>
   <string name="color_theme_dark">Tamsi</string>
+  <string name="text_size_increase">Padidinti teksto dydį</string>
+  <string name="text_size_decrease">Sumažinti teksto dydį</string>
+  <string name="text_size_percent_default">%s (Numatytasis)</string>
   <string name="nav_item_reading_lists">Mano sąrašai</string>
   <string name="reading_list_untitled">Be pavadinimo</string>
   <string name="reading_list_save_to">Įtraukti į skaitymo sąrašą</string>
@@ -263,7 +266,7 @@
   <string name="view_continue_reading_card_title">Skaityti toliau</string>
   <string name="view_because_you_read_card_title">Nes jūs skaitėte</string>
   <string name="view_random_card_title">Atsitiktinis</string>
-  <string name="view_random_card_subtitle">Skaityti atsitiktinį straipsnį iš Vikipedijos</string>
+  <string name="view_random_card_subtitle" fuzzy="true">Skaityti atsitiktinį straipsnį iš Vikipedijos</string>
   <string name="view_main_page_card_title">Šiandien Vikipedijoje</string>
   <string name="view_main_page_card_subtitle">Pagrindinis puslapis %s</string>
   <string name="view_featured_image_card_title">Dienos nuotrauka</string>
@@ -277,11 +280,11 @@
   <string name="most_read_list_card_title">Populiaru</string>
   <string name="view_static_card_icon_content_description">Kortelės piktograma</string>
   <string name="view_card_news_title">Naujienose</string>
-  <plurals name="view_continue_reading_card_subtitle">
+  <plurals name="view_continue_reading_card_subtitle" fuzzy="true">
     <item quantity="one">Vakar</item>
     <item quantity="other">prieš %d dienų</item>
   </plurals>
-  <string name="view_continue_reading_card_subtitle_today">Šiandien</string>
+  <string name="view_continue_reading_card_subtitle_today" fuzzy="true">Šiandien</string>
   <string name="view_announcement_card_negative_action">Ne, ačiū</string>
   <string name="description_edit_text_hint" fuzzy="true">Parašykite aprašymą!</string>
   <string name="description_edit_save">Paskelbti</string>
@@ -295,4 +298,7 @@
   <string name="description_edit_success_done">Atlikta</string>
   <string name="description_edit_success_did_you_know">Ar žinote?</string>
   <string name="description_edit_tutorial_button_label_start_editing">Pradėti redagavimą</string>
+  <string name="more_events_text">Daugiau šiandien</string>
+  <string name="events_count_text">%1$s įvykiai nuo %2$s–%3$d</string>
+  <string name="back_to_top">Į viršų</string>
 </resources>

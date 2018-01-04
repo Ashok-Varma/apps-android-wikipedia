@@ -79,7 +79,7 @@ document.onclick = function() {
 
 module.exports = new ActionsHandler();
 
-},{"./bridge":2,"./utilities":18}],2:[function(require,module,exports){
+},{"./bridge":2,"./utilities":19}],2:[function(require,module,exports){
 function Bridge() {
 }
 
@@ -121,12 +121,22 @@ window.onload = function() {
 var bridge = require("./bridge");
 var pagelib = require("wikimedia-page-library");
 
-bridge.registerListener( 'toggleDarkMode', function( payload ) {
+bridge.registerListener( 'setTheme', function( payload ) {
     var theme;
-
-    window.isDarkMode = !window.isDarkMode;
-
-    theme = window.isDarkMode ? pagelib.ThemeTransform.THEME.DARK : pagelib.ThemeTransform.THEME.DEFAULT;
+    switch (payload.theme) {
+        case 1:
+            theme = pagelib.ThemeTransform.THEME.DARK;
+            window.isDarkMode = true;
+            break;
+        case 2:
+            theme = pagelib.ThemeTransform.THEME.BLACK;
+            window.isDarkMode = true;
+            break;
+        default:
+            theme = pagelib.ThemeTransform.THEME.DEFAULT;
+            window.isDarkMode = false;
+            break;
+    }
     pagelib.ThemeTransform.setTheme( document, theme );
     pagelib.DimImagesTransform.dim( window, window.isDarkMode && payload.dimImages );
 } );
@@ -134,7 +144,7 @@ bridge.registerListener( 'toggleDarkMode', function( payload ) {
 bridge.registerListener( 'toggleDimImages', function( payload ) {
     pagelib.DimImagesTransform.dim( window, payload.dimImages );
 } );
-},{"./bridge":2,"wikimedia-page-library":19}],4:[function(require,module,exports){
+},{"./bridge":2,"wikimedia-page-library":20}],4:[function(require,module,exports){
 var actions = require('./actions');
 var bridge = require('./bridge');
 
@@ -224,7 +234,7 @@ bridge.registerListener( "displayPreviewHTML", function( payload ) {
         pagelib.ThemeTransform.classifyElements( content );
     }
 } );
-},{"./bridge":2,"wikimedia-page-library":19}],9:[function(require,module,exports){
+},{"./bridge":2,"wikimedia-page-library":20}],9:[function(require,module,exports){
 var bridge = require("./bridge");
 
 bridge.registerListener( "setDirectionality", function( payload ) {
@@ -262,11 +272,11 @@ bridge.registerListener( "setMargins", function( payload ) {
 });
 
 bridge.registerListener( "setPaddingTop", function( payload ) {
-    document.getElementById( "content" ).style.paddingTop = payload.paddingTop + "px";
+    document.body.style.paddingTop = payload.paddingTop + "px";
 });
 
 bridge.registerListener( "setPaddingBottom", function( payload ) {
-    document.getElementById( "content" ).style.paddingBottom = payload.paddingBottom + "px";
+    document.body.style.paddingBottom = payload.paddingBottom + "px";
 });
 
 bridge.registerListener( "beginNewPage", function( payload ) {
@@ -323,7 +333,7 @@ function setWindowAttributes( payload ) {
     window.fromRestBase = payload.fromRestBase;
     window.isBeta = payload.isBeta;
     window.siteLanguage = payload.siteLanguage;
-    window.isNetworkMetered = payload.isNetworkMetered;
+    window.showImages = payload.showImages;
 }
 
 function setTitleElement( parentNode ) {
@@ -408,6 +418,10 @@ function elementsForSection( section ) {
 }
 
 function applySectionTransforms( content, isLeadSection ) {
+    if (!window.showImages) {
+        transformer.transform( "hideImages", content );
+    }
+
     if (!window.fromRestBase) {
         // Content service transformations
         if (isLeadSection) {
@@ -427,10 +441,7 @@ function applySectionTransforms( content, isLeadSection ) {
     }
     if (!window.isMainPage) {
         transformer.transform( "hideTables", content );
-
-        if (!window.isNetworkMetered) {
-            transformer.transform( "widenImages", content );
-        }
+        transformer.transform( "widenImages", content );
 
         if (!window.isFilePage) {
             lazyLoadTransformer.convertImagesToPlaceholders( content );
@@ -525,10 +536,19 @@ bridge.registerListener( "displayFromZim", function( payload ) {
     clearContents();
     setWindowAttributes(payload);
     window.isOffline = true;
+    window.mainPageHint = payload.mainPageHint;
     window.offlineContentProvider = payload.offlineContentProvider;
 
     var contentElem = document.getElementById( "content" );
     setTitleElement(contentElem);
+
+    if (window.isMainPage) {
+        // TODO: remove this when the actual Main Pages in ZIM files contain more descriptive content.
+        var helperDiv = document.createElement( "div" );
+        helperDiv.innerHTML = window.mainPageHint;
+        helperDiv.style = "font-size: 85%; margin: 12px 0 20px 0; padding: 12px; line-height: 120%; background-color: rgba(0, 0, 0, 0.04); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 2px;";
+        contentElem.appendChild( helperDiv );
+    }
 
     var issuesContainer = setIssuesElement(contentElem);
 
@@ -681,16 +701,21 @@ function scrollToSection( anchor ) {
     }
 }
 
-bridge.registerListener( "scrollToBottom", function () {
-    window.scrollTo(0, document.body.scrollHeight);
+bridge.registerListener( "scrollToBottom", function ( payload ) {
+    window.scrollTo(0, document.body.scrollHeight - payload.offset - transformer.getDecorOffset());
 });
 
 /**
- * Returns the section id of the section that has the header closest to but above midpoint of screen
+ * Returns the section id of the section that has the header closest to but above midpoint of screen,
+ * or -1 if the page is scrolled all the way to the bottom (i.e. native bottom content should be shown).
  */
 function getCurrentSection() {
     var sectionHeaders = document.getElementsByClassName( "section_heading" );
+    var bottomDiv = document.getElementById( "bottom_stopper" );
     var topCutoff = window.scrollY + ( document.documentElement.clientHeight / 2 );
+    if (topCutoff > bottomDiv.offsetTop) {
+        return -1;
+    }
     var curClosest = null;
     for ( var i = 0; i < sectionHeaders.length; i++ ) {
         var el = sectionHeaders[i];
@@ -713,7 +738,7 @@ bridge.registerListener( "requestCurrentSection", function() {
     bridge.sendMessage( "currentSectionResponse", { sectionID: getCurrentSection() } );
 } );
 
-},{"./bridge":2,"./onclick":7,"./transformer":11,"wikimedia-page-library":19}],11:[function(require,module,exports){
+},{"./bridge":2,"./onclick":7,"./transformer":11,"wikimedia-page-library":20}],11:[function(require,module,exports){
 function Transformer() {
 }
 
@@ -767,7 +792,24 @@ module.exports = {
     handleTableCollapseOrExpandClick: toggleCollapseClickCallback
 };
 
-},{"../transformer":11,"wikimedia-page-library":19}],13:[function(require,module,exports){
+},{"../transformer":11,"wikimedia-page-library":20}],13:[function(require,module,exports){
+var transformer = require("../transformer");
+
+transformer.register( "hideImages", function( content ) {
+    var minImageSize = 64;
+    var images = content.querySelectorAll( 'img' );
+    for (var i = 0; i < images.length; i++) {
+        var img = images[i];
+        if (img.width < minImageSize && img.height < minImageSize) {
+            continue;
+        }
+        // Just replace the src of the image with a placeholder image from our assets.
+        img.src = "file:///android_asset/checkerboard.png";
+        img.srcset = "";
+    }
+} );
+
+},{"../transformer":11}],14:[function(require,module,exports){
 var transformer = require("../transformer");
 
 transformer.register( "hideRefs", function( content ) {
@@ -789,7 +831,7 @@ transformer.register( "hideRefs", function( content ) {
         td.appendChild(refLists[i]);
     }
 } );
-},{"../transformer":11}],14:[function(require,module,exports){
+},{"../transformer":11}],15:[function(require,module,exports){
 var transformer = require("../../transformer");
 
 transformer.register( "anchorPopUpMediaTransforms", function( content ) {
@@ -822,7 +864,7 @@ transformer.register( "anchorPopUpMediaTransforms", function( content ) {
     }
 } );
 
-},{"../../transformer":11}],15:[function(require,module,exports){
+},{"../../transformer":11}],16:[function(require,module,exports){
 var transformer = require("../../transformer");
 var bridge = require("../../bridge");
 
@@ -871,7 +913,7 @@ transformer.register( "hideIPA", function( content ) {
         containerSpan.onclick = ipaClickHandler;
     }
 } );
-},{"../../bridge":2,"../../transformer":11}],16:[function(require,module,exports){
+},{"../../bridge":2,"../../transformer":11}],17:[function(require,module,exports){
 var transformer = require("../../transformer");
 
 // Move the first non-empty paragraph (and related elements) to the top of the section.
@@ -955,7 +997,7 @@ function addTrailingNodes( span, nodes, startIndex ) {
     }
 }
 
-},{"../../transformer":11}],17:[function(require,module,exports){
+},{"../../transformer":11}],18:[function(require,module,exports){
 var maybeWidenImage = require('wikimedia-page-library').WidenImage.maybeWidenImage;
 var transformer = require("../transformer");
 
@@ -977,7 +1019,7 @@ transformer.register( "widenImages", function( content ) {
     }
 } );
 
-},{"../transformer":11,"wikimedia-page-library":19}],18:[function(require,module,exports){
+},{"../transformer":11,"wikimedia-page-library":20}],19:[function(require,module,exports){
 function ancestorContainsClass( element, className ) {
     var contains = false;
     var curNode = element;
@@ -1026,7 +1068,7 @@ module.exports = {
     firstDivAncestor: firstDivAncestor
 };
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
@@ -1184,7 +1226,10 @@ var CONSTRAINT = {
 
 // Theme to CSS classes.
 var THEME = {
-  DEFAULT: 'pagelib_theme_default', DARK: 'pagelib_theme_dark', SEPIA: 'pagelib_theme_sepia'
+  DEFAULT: 'pagelib_theme_default',
+  DARK: 'pagelib_theme_dark',
+  SEPIA: 'pagelib_theme_sepia',
+  BLACK: 'pagelib_theme_black'
 };
 
 /**
@@ -1244,8 +1289,12 @@ var classifyElements = function classifyElements(element) {
   /* en > Away colours > 793128975 */
   /* en > Manchester United F.C. > 793244653 */
   /* en > Pantone > 792312384 */
-  Polyfill.querySelectorAll(element, 'div.color_swatch div, div[style*="position: absolute"]').forEach(function (div) {
-    div.classList.add(CONSTRAINT.DIV_DO_NOT_APPLY_BASELINE);
+  /* en > Wikipedia:Graphs_and_charts > 801754530 */
+  /* en > PepsiCo > 807406166 */
+  /* en > Lua_(programming_language) > 809310207 */
+  var selector = ['div.color_swatch div', 'div[style*="position: absolute"]', 'div.barbox table div[style*="background:"]', 'div.chart div[style*="background-color"]', 'div.chart ul li span[style*="background-color"]', 'span.legend-color', 'div.mw-highlight span', 'code.mw-highlight span'].join();
+  Polyfill.querySelectorAll(element, selector).forEach(function (element) {
+    return element.classList.add(CONSTRAINT.DIV_DO_NOT_APPLY_BASELINE);
   });
 };
 
@@ -1268,45 +1317,21 @@ var SECTION_TOGGLED_EVENT_TYPE = 'section-toggled';
  */
 var getTableHeader = function getTableHeader(element, pageTitle) {
   var thArray = [];
-
-  if (!element.children) {
-    return thArray;
-  }
-
-  for (var i = 0; i < element.children.length; i++) {
-    var el = element.children[i];
-
-    if (el.tagName === 'TH') {
-      // ok, we have a TH element!
-      // However, if it contains more than two links, then ignore it, because
-      // it will probably appear weird when rendered as plain text.
-      var aNodes = el.querySelectorAll('a');
-      // todo: these conditionals are very confusing. Rewrite by extracting a
-      //       method or simplify.
-      if (aNodes.length < 3) {
-        // todo: remove nonstandard Element.innerText usage
-        // Also ignore it if it's identical to the page title.
-        if ((el.innerText && el.innerText.length || el.textContent.length) > 0 && el.innerText !== pageTitle && el.textContent !== pageTitle && el.innerHTML !== pageTitle) {
-          thArray.push(el.innerText || el.textContent);
-        }
+  var headers = Polyfill.querySelectorAll(element, 'th');
+  for (var i = 0; i < headers.length; ++i) {
+    var header = headers[i];
+    var anchors = Polyfill.querySelectorAll(header, 'a');
+    if (anchors.length < 3) {
+      // Also ignore it if it's identical to the page title.
+      if ((header.textContent && header.textContent.length) > 0 && header.textContent !== pageTitle && header.innerHTML !== pageTitle) {
+        thArray.push(header.textContent);
       }
     }
-
-    // if it's a table within a table, don't worry about it
-    if (el.tagName === 'TABLE') {
-      continue;
-    }
-
-    // todo: why do we need to recurse?
-    // recurse into children of this element
-    var ret = getTableHeader(el, pageTitle);
-
-    // did we get a list of TH from this child?
-    if (ret.length > 0) {
-      thArray = thArray.concat(ret);
+    if (thArray.length === 2) {
+      // 'newCaption' only ever uses the first 2 items.
+      break;
     }
   }
-
   return thArray;
 };
 
@@ -1317,15 +1342,12 @@ var getTableHeader = function getTableHeader(element, pageTitle) {
  */
 
 /**
- * Ex: toggleCollapseClickCallback.bind(el, (container) => {
- *       window.scrollTo(0, container.offsetTop - transformer.getDecorOffset())
- *     })
- * @this HTMLElement
+ * @param {!Element} container div
+ * @param {?Element} trigger element that was clicked or tapped
  * @param {?FooterDivClickCallback} footerDivClickCallback
  * @return {boolean} true if collapsed, false if expanded.
  */
-var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDivClickCallback) {
-  var container = this.parentNode;
+var toggleCollapsedForContainer = function toggleCollapsedForContainer(container, trigger, footerDivClickCallback) {
   var header = container.children[0];
   var table = container.children[1];
   var footer = container.children[2];
@@ -1341,7 +1363,7 @@ var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDiv
     }
     footer.style.display = 'none';
     // if they clicked the bottom div, then scroll back up to the top of the table.
-    if (this === footer && footerDivClickCallback) {
+    if (trigger === footer && footerDivClickCallback) {
       footerDivClickCallback(container);
     }
   } else {
@@ -1355,6 +1377,19 @@ var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDiv
     footer.style.display = 'block';
   }
   return collapsed;
+};
+
+/**
+ * Ex: toggleCollapseClickCallback.bind(el, (container) => {
+ *       window.scrollTo(0, container.offsetTop - transformer.getDecorOffset())
+ *     })
+ * @this HTMLElement
+ * @param {?FooterDivClickCallback} footerDivClickCallback
+ * @return {boolean} true if collapsed, false if expanded.
+ */
+var toggleCollapseClickCallback = function toggleCollapseClickCallback(footerDivClickCallback) {
+  var container = this.parentNode;
+  return toggleCollapsedForContainer(container, this, footerDivClickCallback);
 };
 
 /**
@@ -1431,13 +1466,14 @@ var newCaption = function newCaption(title, headerText) {
  * @param {!Element} content
  * @param {?string} pageTitle
  * @param {?boolean} isMainPage
+ * @param {?boolean} isInitiallyCollapsed
  * @param {?string} infoboxTitle
  * @param {?string} otherTitle
  * @param {?string} footerTitle
  * @param {?FooterDivClickCallback} footerDivClickCallback
  * @return {void}
  */
-var collapseTables = function collapseTables(window, content, pageTitle, isMainPage, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback) {
+var adjustTables = function adjustTables(window, content, pageTitle, isMainPage, isInitiallyCollapsed, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback) {
   if (isMainPage) {
     return;
   }
@@ -1501,6 +1537,10 @@ var collapseTables = function collapseTables(window, content, pageTitle, isMainP
       var collapsed = toggleCollapseClickCallback.bind(collapsedFooterDiv, footerDivClickCallback)();
       dispatchSectionToggledEvent(collapsed);
     };
+
+    if (!isInitiallyCollapsed) {
+      toggleCollapsedForContainer(containerDiv);
+    }
   };
 
   for (var i = 0; i < tables.length; ++i) {
@@ -1508,6 +1548,21 @@ var collapseTables = function collapseTables(window, content, pageTitle, isMainP
 
     if (_ret === 'continue') continue;
   }
+};
+
+/**
+ * @param {!Window} window
+ * @param {!Element} content
+ * @param {?string} pageTitle
+ * @param {?boolean} isMainPage
+ * @param {?string} infoboxTitle
+ * @param {?string} otherTitle
+ * @param {?string} footerTitle
+ * @param {?FooterDivClickCallback} footerDivClickCallback
+ * @return {void}
+ */
+var collapseTables = function collapseTables(window, content, pageTitle, isMainPage, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback) {
+  adjustTables(window, content, pageTitle, isMainPage, true, infoboxTitle, otherTitle, footerTitle, footerDivClickCallback);
 };
 
 /**
@@ -1538,6 +1593,7 @@ var CollapseTable = {
   SECTION_TOGGLED_EVENT_TYPE: SECTION_TOGGLED_EVENT_TYPE,
   toggleCollapseClickCallback: toggleCollapseClickCallback,
   collapseTables: collapseTables,
+  adjustTables: adjustTables,
   expandCollapsedTableIfItContainsElement: expandCollapsedTableIfItContainsElement,
   test: {
     getTableHeader: getTableHeader,
@@ -2004,7 +2060,8 @@ var MenuItemType = {
   lastEdited: 2,
   pageIssues: 3,
   disambiguation: 4,
-  coordinate: 5
+  coordinate: 5,
+  talkPage: 6
 };
 
 /**
@@ -2466,7 +2523,7 @@ var updateSaveButtonBookmarkIcon = function updateSaveButtonBookmarkIcon(button,
  * @return {void}
 */
 var updateSaveButtonForTitle = function updateSaveButtonForTitle(title, text, isSaved, document) {
-  var saveButton = document.getElementById('' + SAVE_BUTTON_ID_PREFIX + title);
+  var saveButton = document.getElementById('' + SAVE_BUTTON_ID_PREFIX + encodeURI(title));
   saveButton.innerText = text;
   saveButton.title = text;
   updateSaveButtonBookmarkIcon(saveButton, isSaved);
@@ -2758,7 +2815,8 @@ var IMAGE_LOADED_CLASS = 'pagelib_lazy_load_image_loaded'; // Download completed
 
 // Attributes copied from images to placeholders via data-* attributes for later restoration. The
 // image's classes and dimensions are also set on the placeholder.
-var COPY_ATTRIBUTES = ['class', 'style', 'src', 'srcset', 'width', 'height', 'alt'];
+// The 3 data-* items are used by iOS.
+var COPY_ATTRIBUTES = ['class', 'style', 'src', 'srcset', 'width', 'height', 'alt', 'data-file-width', 'data-file-height', 'data-image-gallery'];
 
 // Small images, especially icons, are quickly downloaded and may appear in many places. Lazily
 // loading these images degrades the experience with little gain. Always eagerly load these images.
@@ -3179,24 +3237,99 @@ var RedLinks = {
 };
 
 /**
+ * Gets array of ancestors of element which need widening.
+ * @param  {!HTMLElement} element
+ * @return {!Array.<HTMLElement>} Zero length array is returned if no elements should be widened.
+ */
+var ancestorsToWiden = function ancestorsToWiden(element) {
+  var widenThese = [];
+  var el = element;
+  while (el.parentNode) {
+    el = el.parentNode;
+    // No need to walk above 'content_block'.
+    if (el.classList.contains('content_block')) {
+      break;
+    }
+    widenThese.push(el);
+  }
+  return widenThese;
+};
+
+/**
+ * Sets style value.
+ * @param {!CSSStyleDeclaration} style
+ * @param {!string} key
+ * @param {*} value
+ * @return {void}
+ */
+var updateStyleValue = function updateStyleValue(style, key, value) {
+  style[key] = value;
+};
+
+/**
+ * Sets style value only if value for given key already exists.
+ * @param {CSSStyleDeclaration} style
+ * @param {!string} key
+ * @param {*} value
+ * @return {void}
+ */
+var updateExistingStyleValue = function updateExistingStyleValue(style, key, value) {
+  var valueExists = Boolean(style[key]);
+  if (valueExists) {
+    updateStyleValue(style, key, value);
+  }
+};
+
+/**
+ * Image widening CSS key/value pairs.
+ * @type {Object}
+ */
+var styleWideningKeysAndValues = {
+  width: '100%',
+  height: 'auto',
+  maxWidth: '100%',
+  float: 'none'
+};
+
+/**
+ * Perform widening on an element. Certain style properties are updated, but only if existing values
+ * for these properties already exist.
+ * @param  {!HTMLElement} element
+ * @return {void}
+ */
+var widenElementByUpdatingExistingStyles = function widenElementByUpdatingExistingStyles(element) {
+  Object.keys(styleWideningKeysAndValues).forEach(function (key) {
+    return updateExistingStyleValue(element.style, key, styleWideningKeysAndValues[key]);
+  });
+};
+
+/**
+ * Perform widening on an element.
+ * @param  {!HTMLElement} element
+ * @return {void}
+ */
+var widenElementByUpdatingStyles = function widenElementByUpdatingStyles(element) {
+  Object.keys(styleWideningKeysAndValues).forEach(function (key) {
+    return updateStyleValue(element.style, key, styleWideningKeysAndValues[key]);
+  });
+};
+
+/**
  * To widen an image element a css class called 'pagelib_widen_image_override' is applied to the
  * image element, however, ancestors of the image element can prevent the widening from taking
  * effect. This method makes minimal adjustments to ancestors of the image element being widened so
  * the image widening can take effect.
- * @param  {!HTMLElement} el Element whose ancestors will be widened
+ * @param  {!HTMLElement} element Element whose ancestors will be widened
  * @return {void}
  */
-var widenAncestors = function widenAncestors(el) {
-  for (var parentElement = el.parentElement; parentElement && !parentElement.classList.contains('content_block'); parentElement = parentElement.parentElement) {
-    if (parentElement.style.width) {
-      parentElement.style.width = '100%';
-    }
-    if (parentElement.style.maxWidth) {
-      parentElement.style.maxWidth = '100%';
-    }
-    if (parentElement.style.float) {
-      parentElement.style.float = 'none';
-    }
+var widenAncestors = function widenAncestors(element) {
+  ancestorsToWiden(element).forEach(widenElementByUpdatingExistingStyles);
+
+  // Without forcing widening on the parent anchor, lazy image loading placeholders
+  // aren't correctly widened on iOS for some reason.
+  var parentAnchor = elementUtilities.findClosestAncestor(element, 'a.image');
+  if (parentAnchor) {
+    widenElementByUpdatingStyles(parentAnchor);
   }
 };
 
@@ -3264,8 +3397,12 @@ var maybeWidenImage = function maybeWidenImage(image) {
 var WidenImage = {
   maybeWidenImage: maybeWidenImage,
   test: {
+    ancestorsToWiden: ancestorsToWiden,
     shouldWidenImage: shouldWidenImage,
-    widenAncestors: widenAncestors
+    updateExistingStyleValue: updateExistingStyleValue,
+    widenAncestors: widenAncestors,
+    widenElementByUpdatingExistingStyles: widenElementByUpdatingExistingStyles,
+    widenElementByUpdatingStyles: widenElementByUpdatingStyles
   }
 };
 
@@ -3315,4 +3452,4 @@ return pagelib$1;
 })));
 
 
-},{}]},{},[2,6,18,11,12,13,17,14,15,16,1,4,5,3,8,9,10]);
+},{}]},{},[2,6,19,11,12,13,14,18,15,16,17,1,4,5,3,8,9,10]);

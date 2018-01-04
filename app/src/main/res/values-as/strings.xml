@@ -303,7 +303,7 @@
   <string name="view_continue_reading_card_title">পঢ়া অব্যাহত ৰাখক</string>
   <string name="view_because_you_read_card_title">কাৰণ আপুনি পঢ়িছে</string>
   <string name="view_random_card_title">যাদৃচ্ছিক</string>
-  <string name="view_random_card_subtitle">ৱিকিপিডিয়াৰ যিকোনো এটা প্ৰবন্ধ পঢ়ক</string>
+  <string name="view_random_card_subtitle" fuzzy="true">ৱিকিপিডিয়াৰ যিকোনো এটা প্ৰবন্ধ পঢ়ক</string>
   <string name="view_main_page_card_title">ৱিকিপিডিয়াত আজি</string>
   <string name="view_main_page_card_subtitle">%s তাৰিখত মূল পৃষ্ঠা</string>
   <string name="view_featured_image_card_title">অজিৰ নিৰ্বাচিত ছবি</string>
@@ -316,7 +316,7 @@
   <string name="view_card_footer_button">আৰু চাওক</string>
   <string name="most_read_list_card_title">ট্ৰেণ্ডিং</string>
   <string name="view_card_news_title">খবৰৰ শীৰ্ষত</string>
-  <string name="view_continue_reading_card_subtitle_today">আজি</string>
+  <string name="view_continue_reading_card_subtitle_today" fuzzy="true">আজি</string>
   <string name="view_announcement_card_negative_action">নালাগে। ধন্যবাদ</string>
   <string name="description_edit_text_hint">শিৰোনামৰ বিৱৰণ</string>
   <string name="description_edit_save">প্ৰকাশ কৰক</string>

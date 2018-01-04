@@ -29,7 +29,7 @@ import org.wikipedia.history.HistoryEntry;
 import org.wikipedia.page.LinkHandler;
 import org.wikipedia.page.PageActivity;
 import org.wikipedia.page.PageTitle;
-import org.wikipedia.theme.DarkModeSwitch;
+import org.wikipedia.theme.ThemeBridgeAdapter;
 import org.wikipedia.util.ConfigurationCompat;
 import org.wikipedia.util.L10nUtil;
 import org.wikipedia.util.log.L;
@@ -65,9 +65,9 @@ public class EditPreviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View parent = inflater.inflate(R.layout.fragment_preview_edit, container, false);
-        webview = (ObservableWebView) parent.findViewById(R.id.edit_preview_webview);
-        previewContainer = (ScrollView) parent.findViewById(R.id.edit_preview_container);
-        editSummaryTagsContainer = (ViewGroup) parent.findViewById(R.id.edit_summary_tags_container);
+        webview = parent.findViewById(R.id.edit_preview_webview);
+        previewContainer = parent.findViewById(R.id.edit_preview_container);
+        editSummaryTagsContainer = parent.findViewById(R.id.edit_summary_tags_container);
 
         bridge = new CommunicationBridge(webview, "file:///android_asset/preview.html");
 
@@ -145,7 +145,7 @@ public class EditPreviewFragment extends Fragment {
         with the original Locale (from above)
          */
         if (!oldLocale.getLanguage().equals(newLocale.getLanguage())) {
-            ConfigurationCompat.setLocale(config, oldLocale);
+            config.setLocale(oldLocale);
             new Resources(assets, metrics, config);
         }
 
@@ -184,8 +184,8 @@ public class EditPreviewFragment extends Fragment {
         if (!isWebViewSetup) {
             isWebViewSetup = true;
             L10nUtil.setupDirectionality(parentActivity.getPageTitle().getWikiSite().languageCode(), Locale.getDefault().getLanguage(), bridge);
-            if (WikipediaApp.getInstance().isCurrentThemeDark()) {
-                new DarkModeSwitch(bridge).turnOn();
+            if (!WikipediaApp.getInstance().getCurrentTheme().isDefault()) {
+                ThemeBridgeAdapter.setTheme(bridge);
             }
 
             bridge.addListener("linkClicked", new LinkHandler(getActivity()) {

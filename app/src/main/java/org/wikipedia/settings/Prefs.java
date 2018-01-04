@@ -558,7 +558,7 @@ public final class Prefs {
     }
 
     public static boolean isOfflineTutorialEnabled() {
-        return getBoolean(R.string.preference_key_offline_onboarding_enabled, true);
+        return getBoolean(R.string.preference_key_offline_onboarding_enabled, false);
     }
 
     public static void setOfflineTutorialEnabled(boolean enabled) {
@@ -579,6 +579,48 @@ public final class Prefs {
 
     public static boolean preferOfflineContent() {
         return getBoolean(R.string.preference_key_prefer_offline_content, false);
+    }
+
+    public static boolean offlineLibraryEnabled() {
+        return getBoolean(R.string.preference_key_enable_offline_library, false);
+    }
+
+    @NonNull public static List<Boolean> getFeedCardsEnabled() {
+        if (!contains(R.string.preference_key_feed_cards_enabled)) {
+            return Collections.emptyList();
+        }
+        //noinspection unchecked
+        List<Boolean> enabledList = GsonUnmarshaller.unmarshal(new TypeToken<ArrayList<Boolean>>(){},
+                getString(R.string.preference_key_feed_cards_enabled, null));
+        return enabledList != null ? enabledList : Collections.emptyList();
+    }
+
+    public static void setFeedCardsEnabled(@NonNull List<Boolean> enabledList) {
+        setString(R.string.preference_key_feed_cards_enabled, GsonMarshaller.marshal(enabledList));
+    }
+
+    @NonNull public static List<Integer> getFeedCardsOrder() {
+        if (!contains(R.string.preference_key_feed_cards_order)) {
+            return Collections.emptyList();
+        }
+        //noinspection unchecked
+        List<Integer> orderList = GsonUnmarshaller.unmarshal(new TypeToken<ArrayList<Integer>>(){},
+                getString(R.string.preference_key_feed_cards_order, null));
+        return orderList != null ? orderList : Collections.emptyList();
+    }
+
+    public static void setFeedCardsOrder(@NonNull List<Integer> orderList) {
+        setString(R.string.preference_key_feed_cards_order, GsonMarshaller.marshal(orderList));
+    }
+
+    public static void resetFeedCustomizations() {
+        remove(R.string.preference_key_feed_hidden_cards);
+        remove(R.string.preference_key_feed_cards_enabled);
+        remove(R.string.preference_key_feed_cards_order);
+    }
+
+    public static void setFeedCustomizeTutorialCardEnabled(boolean enabled) {
+        setBoolean(R.string.preference_key_feed_customize_onboarding_card_enabled, enabled);
     }
 
     private Prefs() { }

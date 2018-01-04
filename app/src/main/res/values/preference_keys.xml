@@ -64,4 +64,10 @@
     <string name="preference_key_dim_dark_mode_images">dimDarkModeImages</string>
     <string name="preference_key_suppress_notification_polling">suppressNotificationPolling</string>
     <string name="preference_key_prefer_offline_content">preferOfflineContent</string>
+    <string name="preference_key_enable_offline_library">enableOfflineLibrary</string>
+    <string name="preference_key_feed_cards_order">feedCardsOrder</string>
+    <string name="preference_key_feed_cards_enabled">feedCardsEnabled</string>
+    <string name="preference_key_feed_customize_onboarding_card_enabled">feedCustomizeOnboardingCardEnabled</string>
+    <string name="preference_key_add_articles">addArticles</string>
+    <string name="preference_key_add_reading_lists">addReadingLists</string>
 </resources>

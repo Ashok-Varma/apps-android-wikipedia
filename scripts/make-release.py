@@ -41,7 +41,7 @@ import sys
 
 PATH_PREFIX = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 GRADLEW = './gradlew'
-VERSION_START = '2.6'
+VERSION_START = '2.7'
 
 
 def p(*path_fragments):
@@ -95,7 +95,7 @@ def copy_artifacts(flavor):
 
 
 def get_original_apk_file_name(flavor):
-    return 'app/build/outputs/apk/app-%s-release.apk' % flavor
+    return 'app/build/outputs/apk/' + flavor + '/release/app-' + flavor + '-release.apk'
 
 
 def get_android_home():

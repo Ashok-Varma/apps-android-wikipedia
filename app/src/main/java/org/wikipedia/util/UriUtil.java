@@ -26,6 +26,7 @@ public final class UriUtil {
     public static final String LOCAL_URL_OFFLINE_LIBRARY = "#offlinelibrary";
     public static final String LOCAL_URL_SETTINGS = "#settings";
     public static final String LOCAL_URL_LOGIN = "#login";
+    public static final String LOCAL_URL_CUSTOMIZE_FEED = "#customizefeed";
 
     /**
      * Decodes a URL-encoded string into its UTF-8 equivalent. If the string cannot be decoded, the
@@ -151,10 +152,14 @@ public final class UriUtil {
         return removeFragment(removeLinkPrefix(url)).replace("_", " ");
     }
 
-    /** Get language variant code from a Uri, especially for the zh variants, will get "wiki" or "zh-*" */
+    /** Get language variant code from a Uri, e.g. "zh-*", otherwise returns empty string. */
     @NonNull
     public static String getLanguageVariantFromUri(@NonNull Uri uri) {
-        return StringUtils.defaultString(uri.getPath()).replaceAll("^/|/.*", "");
+        if (TextUtils.isEmpty(uri.getPath())) {
+            return "";
+        }
+        String[] parts = StringUtils.split(StringUtils.defaultString(uri.getPath()), '/');
+        return parts.length > 1 && !parts[0].equals("wiki") ? parts[0] : "";
     }
 
     /** For internal links only */

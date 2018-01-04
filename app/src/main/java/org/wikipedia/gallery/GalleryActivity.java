@@ -174,24 +174,24 @@ public class GalleryActivity extends BaseActivity implements LinkPreviewDialog.C
         setContentView(R.layout.activity_gallery);
         initToolbar();
 
-        toolbarContainer = (ViewGroup) findViewById(R.id.gallery_toolbar_container);
-        infoContainer = (ViewGroup) findViewById(R.id.gallery_info_container);
+        toolbarContainer = findViewById(R.id.gallery_toolbar_container);
+        infoContainer = findViewById(R.id.gallery_info_container);
         setBackgroundGradient(infoContainer, Gravity.BOTTOM);
 
-        progressBar = (ProgressBar) findViewById(R.id.gallery_progressbar);
+        progressBar = findViewById(R.id.gallery_progressbar);
 
-        descriptionText = (TextView) findViewById(R.id.gallery_description_text);
+        descriptionText = findViewById(R.id.gallery_description_text);
         descriptionText.setShadowLayer(2, 1, 1, color(R.color.black54));
         descriptionText.setMovementMethod(linkMovementMethod);
 
-        licenseIcon = (ImageView) findViewById(R.id.gallery_license_icon);
+        licenseIcon = findViewById(R.id.gallery_license_icon);
         licenseIcon.setOnClickListener(licenseShortClickListener);
         licenseIcon.setOnLongClickListener(licenseLongClickListener);
 
-        creditText = (TextView) findViewById(R.id.gallery_credit_text);
+        creditText = findViewById(R.id.gallery_credit_text);
         creditText.setShadowLayer(2, 1, 1, color(R.color.black54));
 
-        errorView = (WikiErrorView) findViewById(R.id.view_gallery_error);
+        errorView = findViewById(R.id.view_gallery_error);
         ((ImageView) errorView.findViewById(R.id.view_wiki_error_icon))
                 .setColorFilter(color(R.color.base70));
         ((TextView) errorView.findViewById(R.id.view_wiki_error_text))
@@ -218,7 +218,7 @@ public class GalleryActivity extends BaseActivity implements LinkPreviewDialog.C
 
         galleryCache = new HashMap<>();
         galleryAdapter = new GalleryItemAdapter(this);
-        galleryPager = (ViewPager) findViewById(R.id.gallery_item_pager);
+        galleryPager = findViewById(R.id.gallery_item_pager);
         galleryPager.setAdapter(galleryAdapter);
         pageChangeListener = new GalleryPageChangeListener();
         galleryPager.addOnPageChangeListener(pageChangeListener);
@@ -393,21 +393,21 @@ public class GalleryActivity extends BaseActivity implements LinkPreviewDialog.C
         public void onUrlClick(@NonNull String url, @Nullable String notUsed) {
             L.v("Link clicked was " + url);
             url = resolveProtocolRelativeUrl(url);
-            WikiSite appWikiSite = app.getWikiSite();
             if (url.startsWith("/wiki/")) {
-                PageTitle title = appWikiSite.titleForInternalLink(url);
+                PageTitle title = app.getWikiSite().titleForInternalLink(url);
                 showLinkPreview(title);
             } else {
                 Uri uri = Uri.parse(url);
                 String authority = uri.getAuthority();
                 if (authority != null && WikiSite.supportedAuthority(authority)
                     && uri.getPath().startsWith("/wiki/")) {
-                    PageTitle title = appWikiSite.titleForUri(uri);
+                    PageTitle title = new WikiSite(uri).titleForUri(uri);
                     showLinkPreview(title);
                 } else {
                     // if it's a /w/ URI, turn it into a full URI and go external
                     if (url.startsWith("/w/")) {
-                        url = String.format("%1$s://%2$s", appWikiSite.scheme(), appWikiSite.authority()) + url;
+                        url = String.format("%1$s://%2$s", app.getWikiSite().scheme(),
+                                app.getWikiSite().authority()) + url;
                     }
                     handleExternalLink(GalleryActivity.this, Uri.parse(url));
                 }
@@ -633,7 +633,7 @@ public class GalleryActivity extends BaseActivity implements LinkPreviewDialog.C
     }
 
     private void initToolbar() {
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.gallery_toolbar);
+        final Toolbar toolbar = findViewById(R.id.gallery_toolbar);
         setBackgroundGradient(toolbar, Gravity.TOP);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

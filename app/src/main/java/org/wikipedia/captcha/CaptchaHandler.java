@@ -49,10 +49,10 @@ public class CaptchaHandler {
         this.prevTitle = prevTitle;
 
         captchaContainer = activity.findViewById(R.id.captcha_container);
-        captchaImage = (SimpleDraweeView) activity.findViewById(R.id.captcha_image);
+        captchaImage = activity.findViewById(R.id.captcha_image);
         captchaText = ((TextInputLayout) activity.findViewById(R.id.captcha_text)).getEditText();
         captchaProgress = activity.findViewById(R.id.captcha_image_progress);
-        TextView submitButton = (TextView) activity.findViewById(R.id.captcha_submit_button);
+        TextView submitButton = activity.findViewById(R.id.captcha_submit_button);
 
         if (submitButtonText != null) {
             submitButton.setText(submitButtonText);
@@ -148,7 +148,7 @@ public class CaptchaHandler {
 
                         // for our Dark theme, show a "negative image" of the captcha!
                         final int maxColorVal = 255;
-                        if (WikipediaApp.getInstance().isCurrentThemeDark()) {
+                        if (WikipediaApp.getInstance().getCurrentTheme().isDark()) {
                             float[] colorMatrixNegative = {
                                     -1.0f, 0, 0, 0, maxColorVal, //red
                                     0, -1.0f, 0, 0, maxColorVal, //green

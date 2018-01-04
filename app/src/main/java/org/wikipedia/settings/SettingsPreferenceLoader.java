@@ -1,6 +1,5 @@
 package org.wikipedia.settings;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -12,9 +11,10 @@ import android.support.v7.preference.SwitchPreferenceCompat;
 import org.wikipedia.BuildConfig;
 import org.wikipedia.R;
 import org.wikipedia.WikipediaApp;
-import org.wikipedia.readinglist.sync.ReadingListSynchronizer;
-import org.wikipedia.theme.Theme;
+import org.wikipedia.activity.BaseActivity;
+import org.wikipedia.theme.ThemeFittingRoomActivity;
 import org.wikipedia.util.ReleaseUtil;
+import org.wikipedia.util.StringUtil;
 
 import static org.apache.commons.lang3.StringUtils.defaultString;
 
@@ -43,10 +43,15 @@ class SettingsPreferenceLoader extends BasePreferenceLoader {
         }
 
         findPreference(R.string.preference_key_sync_reading_lists)
-                .setOnPreferenceChangeListener(new SyncReadingListsListener(getActivity()));
+                .setOnPreferenceChangeListener(new SyncReadingListsListener());
 
-        findPreference(R.string.preference_key_color_theme)
-                .setOnPreferenceChangeListener(new ThemeChangeListener(getActivity()));
+        Preference offlineLibPref = findPreference(R.string.preference_key_enable_offline_library);
+        offlineLibPref.setOnPreferenceChangeListener(new OfflineLibraryEnableListener());
+        offlineLibPref.setSummary(StringUtil.fromHtml(getPreferenceHost().getString(R.string.preference_summary_enable_offline_library)));
+        // TODO: remove when offline library sideloading is ready to go.
+        if (!ReleaseUtil.isPreBetaRelease()) {
+            offlineLibPref.setVisible(false);
+        }
 
         loadPreferences(R.xml.preferences_about);
 
@@ -73,7 +78,12 @@ class SettingsPreferenceLoader extends BasePreferenceLoader {
             }
         });
 
-        setDimImagesPrefEnabled(getActivity(), WikipediaApp.getInstance().getCurrentTheme());
+        Preference themePref = findPreference(R.string.preference_key_color_theme);
+        themePref.setSummary(WikipediaApp.getInstance().getCurrentTheme().getNameId());
+        themePref.setOnPreferenceClickListener(preference -> {
+            getActivity().startActivity(ThemeFittingRoomActivity.newIntent(getActivity()));
+            return true;
+        });
 
         if (!BuildConfig.APPLICATION_ID.equals("org.wikipedia")) {
             overridePackageName();
@@ -103,15 +113,6 @@ class SettingsPreferenceLoader extends BasePreferenceLoader {
         languagePref.setSummary(WikipediaApp.getInstance().getAppOrSystemLanguageLocalizedName());
     }
 
-    private static String getDimImagesKey(Context context) {
-        return context.getString(R.string.preference_key_dim_dark_mode_images);
-    }
-
-    private void setDimImagesPrefEnabled(Context context, Theme theme) {
-        Preference dimImagesPref = findPreference(getDimImagesKey(context));
-        dimImagesPref.setEnabled(theme.isDark());
-    }
-
     private static class ShowZeroInterstitialListener implements Preference.OnPreferenceChangeListener {
         @Override public boolean onPreferenceChange(Preference preference, Object newValue) {
             if (newValue == Boolean.FALSE) {
@@ -121,23 +122,16 @@ class SettingsPreferenceLoader extends BasePreferenceLoader {
         }
     }
 
-    private static final class SyncReadingListsListener implements Preference.OnPreferenceChangeListener {
-        private Context context;
-
-        private SyncReadingListsListener(Context context) {
-            this.context = context;
-        }
-
+    private final class SyncReadingListsListener implements Preference.OnPreferenceChangeListener {
         @Override public boolean onPreferenceChange(final Preference preference, Object newValue) {
-            final ReadingListSynchronizer synchronizer = ReadingListSynchronizer.instance();
             if (newValue == Boolean.TRUE) {
                 ((SwitchPreferenceCompat) preference).setChecked(true);
                 Prefs.setReadingListSyncEnabled(true);
-                synchronizer.sync();
+                // TODO: kick off initial sync
             } else {
-                new AlertDialog.Builder(context)
+                new AlertDialog.Builder(getActivity())
                         .setMessage(R.string.reading_lists_confirm_remote_delete)
-                        .setPositiveButton(R.string.reading_lists_confirm_remote_delete_yes, new DeleteRemoteListsYesListener(preference, synchronizer))
+                        .setPositiveButton(R.string.reading_lists_confirm_remote_delete_yes, new DeleteRemoteListsYesListener(preference))
                         .setNegativeButton(R.string.reading_lists_confirm_remote_delete_no, new DeleteRemoteListsNoListener(preference))
                         .show();
             }
@@ -146,37 +140,27 @@ class SettingsPreferenceLoader extends BasePreferenceLoader {
         }
     }
 
-    private final class ThemeChangeListener implements Preference.OnPreferenceChangeListener {
-        private Context context;
-
-        private ThemeChangeListener(Context context) {
-            this.context = context;
-        }
-
+    private final class OfflineLibraryEnableListener implements Preference.OnPreferenceChangeListener {
         @Override public boolean onPreferenceChange(Preference preference, Object newValue) {
-            Theme theme = Theme.ofMarshallingId((Integer) newValue);
-            WikipediaApp.getInstance().setCurrentTheme(theme);
-            setDimImagesPrefEnabled(context, theme);
-            // The setCurrentTheme call updates the nonvolatile Preference state and updates the UI
-            // accordingly. Return false since the pref state is already updated by the method call.
-            return false;
+            if (((Boolean) newValue)) {
+                ((BaseActivity) getActivity()).searchOfflineCompilationsWithPermission(true);
+            }
+            return true;
         }
     }
 
     private static final class DeleteRemoteListsYesListener implements DialogInterface.OnClickListener {
         private Preference preference;
-        private ReadingListSynchronizer synchronizer;
 
-        private DeleteRemoteListsYesListener(Preference preference, ReadingListSynchronizer synchronizer) {
+        private DeleteRemoteListsYesListener(Preference preference) {
             this.preference = preference;
-            this.synchronizer = synchronizer;
         }
 
         @Override public void onClick(DialogInterface dialog, int which) {
             ((SwitchPreferenceCompat) preference).setChecked(false);
             Prefs.setReadingListSyncEnabled(false);
             Prefs.setReadingListsRemoteDeletePending(true);
-            synchronizer.sync();
+            // TODO: kick off sync
         }
     }
 

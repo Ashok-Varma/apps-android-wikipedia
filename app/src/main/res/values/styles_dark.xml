@@ -43,11 +43,13 @@
         <item name="list_separator_drawable">@drawable/divider_dark</item>
         <item name="tab_item_selector">@drawable/tab_item_selector_dark</item>
         <item name="tab_shadow_drawable">@drawable/tab_item_bottom_gradient_light</item>
+        <item name="button_highlight_border_shape">@drawable/button_shape_border_light</item>
 
         <!-- Overrides of our own custom color attributes -->
         <item name="main_toolbar_color">@color/accent30</item>
         <item name="main_status_bar_color">@color/accent20</item>
         <item name="page_status_bar_color">@color/base12</item>
+        <item name="page_expanded_status_bar_color">@color/base12</item>
         <item name="page_toolbar_color">@color/base18</item>
         <item name="page_toolbar_icon_color">@color/base100</item>
         <item name="edit_text_color">@color/base90</item>
@@ -63,7 +65,6 @@
         <item name="primary_text_color">@color/base90</item>
         <item name="secondary_text_color">@color/base70</item>
         <item name="section_title_color">@color/base90</item>
-
         <item name="chart_shade1">@color/base100</item>
         <item name="chart_shade4">@color/base50</item>
         <item name="chart_shade5">@color/base30</item>
@@ -87,6 +88,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorAccent">@color/accent75</item>
+        <item name="android:colorBackground">?attr/paper_color</item>
     </style>
 
     <style name="PopupMenuDark" parent="Widget.AppCompat.PopupMenu">

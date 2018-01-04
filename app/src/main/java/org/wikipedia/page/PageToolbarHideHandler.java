@@ -37,14 +37,14 @@ public class PageToolbarHideHandler extends ViewHideHandler {
 
     public PageToolbarHideHandler(@NonNull PageFragment pageFragment, @NonNull View hideableView,
                                   @NonNull Toolbar toolbar, @NonNull ImageView tabsButton) {
-        super(hideableView, Gravity.TOP);
+        super(hideableView, null, Gravity.TOP);
         this.pageFragment = pageFragment;
         this.toolbar = toolbar;
         this.toolbarBackground = hideableView.getBackground().mutate();
         this.tabsButton = tabsButton;
 
         themedIconColor = getThemedColor(toolbar.getContext(), R.attr.page_toolbar_icon_color);
-        baseStatusBarColor = ContextCompat.getColor(pageFragment.getContext(), R.color.base12);
+        baseStatusBarColor = getThemedColor(toolbar.getContext(), R.attr.page_expanded_status_bar_color);
         themedStatusBarColor = getThemedColor(toolbar.getContext(), R.attr.page_status_bar_color);
     }
 

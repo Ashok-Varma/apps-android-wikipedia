@@ -26,8 +26,8 @@
         android:name="android.permission.MANAGE_ACCOUNTS"
         android:maxSdkVersion="22" />
 
-    <!-- For Wikipedia Zero notifications: http://stackoverflow.com/q/13602190/970346 -->
-    <uses-permission android:name="android.permission.VIBRATE" android:maxSdkVersion="18" />
+    <!-- For notifications, e.g. User account notices, Wikipedia Zero, etc. -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <!-- For being able to receive notifications upon boot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -38,6 +38,9 @@
     <uses-feature android:name="android.hardware.location.gps" tools:node="replace" android:required="false" />
     <uses-feature android:name="android.hardware.location.network" android:required="false" />
     <uses-feature android:name="android.hardware.wifi" tools:node="replace" android:required="false"  />
+
+    <!-- For keeping the device awake while performing background tasks, such as syncing offline articles. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!--
         Don't let Google Play filter out devices that just have fake touch
@@ -164,7 +167,7 @@
             android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".settings.LicenseActivity"
-            android:exported="false"
+            android:exported="true"
             android:theme="@style/AppTheme.ActionBar"
             tools:ignore="GoogleAppIndexingUrlError">
             <intent-filter>
@@ -173,10 +176,6 @@
                 <data android:pathPrefix="/android_asset/licenses/" android:scheme="content" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".useroption.ui.UserOptionRowActivity"
-            android:theme="@style/AppTheme.ActionBar"
-            android:label="@string/user_option_activity_title" />
 
         <activity
             android:name=".feed.news.NewsActivity" />
@@ -225,17 +224,28 @@
             android:name=".offline.OfflineTutorialActivity"
             android:theme="@style/AppTheme.TranslucentStatus"/>
 
+        <activity
+            android:name=".feed.mostread.MostReadArticlesActivity"
+            android:theme="@style/AppTheme.ActionBar"/>
+
+        <activity android:name=".feed.onthisday.OnThisDayActivity" />
+
+        <activity android:name=".feed.configure.ConfigureActivity"
+            android:label="@string/feed_configure_activity_title"
+            android:theme="@style/AppTheme.ActionBar"/>
+
+        <activity android:name=".random.RandomActivity"
+            android:label="@string/view_random_card_title"
+            android:theme="@style/AppTheme.ActionBar"/>
+
+        <activity android:name=".theme.ThemeFittingRoomActivity"
+            android:label="@string/preference_title_app_theme"
+            android:theme="@style/AppTheme.ActionBar"/>
+
         <provider
             android:authorities="${applicationId}"
             android:name=".database.AppContentProvider"
             android:exported="false" />
-
-        <provider
-            android:authorities="@string/user_option_authority"
-            android:name=".database.UserOptionContentProvider"
-            android:exported="false"
-            android:syncable="true"
-            android:label="@string/user_option_sync_label" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -304,20 +314,6 @@
         </receiver>
 
         <service
-            android:name=".useroption.sync.UserOptionSyncService"
-            android:exported="false">
-
-            <intent-filter>
-                <action android:name="android.content.SyncAdapter" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.content.SyncAdapter"
-                android:resource="@xml/user_option_sync_adapter" />
-
-        </service>
-
-        <service
             android:name=".auth.AuthenticatorService"
             android:exported="false">
 
@@ -331,7 +327,11 @@
 
         </service>
 
-        <service android:name=".savedpages.SavedPageSyncService" />
+        <service
+            android:name=".savedpages.SavedPageSyncService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <receiver android:name=".savedpages.SavedPageSyncNotification" />
 
     </application>
 </manifest>

@@ -366,7 +366,7 @@
   <string name="view_continue_reading_card_title">Đọc tiếp</string>
   <string name="view_because_you_read_card_title">Vì bạn đã đọc</string>
   <string name="view_random_card_title">Ngẫu nhiên</string>
-  <string name="view_random_card_subtitle">Đọc bài ngẫu nhiên từ Wikipedia</string>
+  <string name="view_random_card_subtitle" fuzzy="true">Đọc bài ngẫu nhiên từ Wikipedia</string>
   <string name="view_main_page_card_title">Hôm nay tại Wikipedia</string>
   <string name="view_main_page_card_subtitle">Trang chính vào %s</string>
   <string name="view_featured_image_card_title">Hình ảnh trong ngày</string>
@@ -381,10 +381,10 @@
   <string name="view_static_card_icon_content_description">Hình tượng thẻ</string>
   <string name="view_card_news_title">Tin tức</string>
   <plurals name="view_continue_reading_card_subtitle">
-    <item quantity="one">Hôm qua</item>
+    <item quantity="one">hôm qua</item>
     <item quantity="other">%d ngày trước</item>
   </plurals>
-  <string name="view_continue_reading_card_subtitle_today">Hôm nay</string>
+  <string name="view_continue_reading_card_subtitle_today">hôm nay</string>
   <string name="view_announcement_card_negative_action">Thôi</string>
   <string name="view_offline_card_text">Không thể tải nội dung khi ngoại tuyến.</string>
   <string name="view_featured_article_card_title">Bài viết chọn lọc</string>
@@ -436,7 +436,7 @@
   <string name="offline_my_compilations">Quản lý thư viện ngoại tuyến</string>
   <string name="offline_compilations_title">Thư viện Ngoại tuyến</string>
   <string name="offline_compilations_search_by_name">Tìm gói bài theo tên</string>
-  <string name="offline_compilations_found_count">Trong thư viện của tôi (%d)</string>
+  <string name="offline_compilations_found_count" fuzzy="true">Trong thư viện của tôi (%d)</string>
   <string name="offline_compilations_add">Thêm vào Thư viện Ngoại tuyến</string>
   <string name="remote_compilations_title">Thư viện Ngoại tuyến</string>
   <string name="remote_compilations_description">Với Thư viện Ngoại tuyến, bạn có thể tải về các gói bài để đọc khi nào mất kết nối Internet.</string>
@@ -475,7 +475,7 @@
   <string name="onboarding_continue">Tiếp tục</string>
   <string name="onboarding_get_started">Bắt đầu</string>
   <string name="onboarding_explore_title">Cách thám hiểm mới</string>
-  <string name="onboarding_explore_text">Khám phá các bài viết chọn lọc, đề tài thịnh hành, và gợi ý đọc bài trong nguồn cấp Thám hiểm.</string>
+  <string name="onboarding_explore_text" fuzzy="true">Khám phá các bài viết chọn lọc, đề tài thịnh hành, và gợi ý đọc bài trong nguồn cấp Thám hiểm.</string>
   <string name="onboarding_reading_list_sync_title">Danh sách đọc có thể đồng bộ hóa</string>
   <string name="onboarding_reading_list_sync_text">Tạo các danh sách đọc có những bài bạn muốn đọc sau, ngay cả khi ngoại tuyến. &lt;a href=\"#login\"&gt;Đăng nhập vào hoặc mở&lt;/a&gt; tài khoản Wikipedia sao lưu các danh sách đọc của bạn.</string>
   <string name="onboarding_analytics_title">Gửi dữ liệu vô danh</string>

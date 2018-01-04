@@ -119,7 +119,9 @@ public class ShareHandler {
     }
 
     private void onEditHerePayload(int sectionID, String text) {
-        fragment.getEditHandler().startEditingSection(sectionID, text);
+        if (sectionID >= 0) {
+            fragment.getEditHandler().startEditingSection(sectionID, text);
+        }
     }
 
     private void showCopySnackbar() {
@@ -282,7 +284,7 @@ public class ShareHandler {
             super(context);
             View rootView = LayoutInflater.from(context).inflate(R.layout.dialog_share_preview, null);
             setContentView(rootView);
-            ImageView previewImage = (ImageView) rootView.findViewById(R.id.preview_img);
+            ImageView previewImage = rootView.findViewById(R.id.preview_img);
             previewImage.setImageBitmap(resultBitmap);
             rootView.findViewById(R.id.close_button)
                     .setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,8 @@
   <string name="history_item_delete_undo">နောက်ပြန် ပြန်ပြင်ရန်</string>
   <string name="dialog_title_clear_history">အသုံးပြုမှတ်တမ်း ရှင်းလင်းရန်</string>
   <string name="dialog_message_clear_history">သင်၏ အသုံးပြုမှတ်တမ်းများ အားလုံးကို ဖျက်ပြီး လက်ရှိဖွင့်ထားသမျှကို ပိတ်ပါမည်။ သင်သေချာပြီလား?</string>
+  <string name="dialog_message_clear_history_yes">လုပ်မည်</string>
+  <string name="dialog_message_clear_history_no">မလုပ်ပါ</string>
   <string name="nav_item_saved_pages">သိမ်းထားသော စာမျက်နှာများ</string>
   <string name="share_via">မှမျှဝေ</string>
   <string name="search_redirect_from">%s မှ ပြန်ညွှန်းထားသည်</string>
@@ -40,6 +42,9 @@
   <string name="nearby_osm_license">&amp;copy; &amp;nbsp;&lt;a href=\"https://www.openstreetmap.org/copyright/\"&gt;OpenStreetMap&lt;/a&gt; ပံ့ပိုးသူများ</string>
   <string name="last_updated_text">နောက်ဆုံးပြင်ခဲ့ချိန် %s</string>
   <string name="talk_page_link_text">ဆွေးနွေးချက်</string>
+  <string name="edit_history_link_text">တည်းဖြတ်မှု ရာဇဝင်</string>
+  <string name="map_view_link_text">မြေပုံပေါ်တွင် ကြည့်ရန်</string>
+  <string name="language_count_link_text">အခြားဘာသာစကား %d ခုဖြင့် ရရှိနိုင်သည်</string>
   <string name="content_license_html">အထူးသတိပေးမထားပါက အချက်အလက်များအား &lt;a href=\"%1$s\"&gt;CC BY-SA 3.0&lt;/a&gt; အနေဖြင့် ရယူသုံးစွဲနိုင်သည်။</string>
   <string name="edit_save_action_license_logged_in">သိမ်းဆည်းလိုက် ခြင်းအားဖြင့် သင်သည် &lt;a href=\"%1$s\"&gt;သုံးစွဲမှု သဘောတူညီချက်&lt;/a&gt;အား သဘောတူပြီးဖြစ်ပြီး သင်၏ မျှဝေမှုအား &lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt; လိုင်စင်ဖြင့် ဖြန့်ချီမည်ဖြစ်ကြောင်း သိရှိပြီးဖြစ်ရမည်။</string>
   <string name="edit_save_action_license_anon">သိမ်းဆည်းလိုက် ခြင်းအားဖြင့် သင်သည် &lt;a href=\"%1$s\"&gt;သုံးစွဲမှု သဘောတူညီချက်&lt;/a&gt;အား သဘောတူပြီးဖြစ်ပြီး သင်၏ မျှဝေမှုအား &lt;a href=\"%2$s\"&gt;CC BY-SA 3.0&lt;/a&gt; လိုင်စင်ဖြင့် ဖြန့်ချီမည်ဖြစ်ကြောင်း သိရှိပြီးဖြစ်ရမည်။ တည်းဖြတ်မှုများအား သင်၏ အိုင်ပီလိပ်စာဖြင့်သိမ်းထားမည်ဖြစ်သည်။ သင် ဆိုဒ်သို့&lt;a href=\"https://#login\"&gt;ဝင်ရောက်ထားပါက&lt;/a&gt; လုံခြုံမှုပိုရှိမည်ဖြစ်သည်။</string>
@@ -68,6 +73,8 @@
   <string name="title_captcha">CAPTCHA ဖြည့်ပါ</string>
   <string name="edit_section_captcha_reload">CAPTCHA ကိုထိပြီးအသစ်ထပ်ယူပါ</string>
   <string name="edit_saved_page_refresh">ဤသိမ်းဆည်းထားသော စာမျက်နှာသည် ဟောင်းနွမ်းနေနိုင်ပါသည်။ တည်းဖြတ်နိုင်ရန်အတွက် ရှင်းသန့်ရန် လိုအပ်ပါသည်။ စာမျက်နှာကို ရှင်းသန့်လိုပါသလား?</string>
+  <string name="edit_saved_page_refresh_yes">လုပ်မည်</string>
+  <string name="edit_saved_page_refresh_no">မလုပ်ပါ</string>
   <string name="nav_item_login">ဝီကီပီးဒီးယားသို့ လော့ဂ်အင် ဝင်ရောက်ရန်</string>
   <string name="login_username_hint">အသုံးပြုသူအမည်</string>
   <string name="login_password_hint">စကားဝှက်</string>
@@ -79,6 +86,7 @@
   <string name="toast_logout_complete">လော့ဂ်အောက်ထွက်ပြီးပြီ</string>
   <string name="history_empty_title">လတ်တလော စာမျက်နှာများ ဤနေရာတွင် မရှိပါ!</string>
   <string name="history_empty_message">အားလုံးကို သင် ဖျက်ပစ်လိုက်တာ ဖြစ်နိုင်သည်။ နောင်တွင် သင်သွားရောက်သည့် စာမျက်နှာအား ဤနေရာတွင် ပြန်ရယူနိုင်ပါသည်။</string>
+  <string name="search_empty_message">အခမဲ့စွယ်စုံကျမ်းကို သင့်ဘာသာစကားဖြင့် ရှာဖွေဖတ်ရှုပါ။</string>
   <string name="delete_selected_items">ရွေးချယ်ထားသော အကြောင်းအရာများကို ဖျက်ပါ</string>
   <string name="wp_stylized">&lt;big&gt;ဝီ&lt;/big&gt;ကီပီးဒီး&lt;big&gt;ယား&lt;/big&gt;</string>
   <string name="create_account_username_hint">အသုံးပြုသူအမည်</string>
@@ -93,6 +101,7 @@
   <string name="create_account_passwords_mismatch_error">စကားဝှက်များ ကိုက်ညီမှုမရှိပါ</string>
   <string name="create_account_email_error">တရားမဝင်သော အီးမေးလ်လိပ်စာ</string>
   <string name="create_account_username_error">အသုံးပြုသူအမည်၌ တရားမဝင်သော အက္ခရာများ</string>
+  <string name="create_account_password_error">စကားဝှက်သည် မရေရာပါ</string>
   <string name="create_account_generic_error">အကောင့်ဖန်တီးမရနိုင်ပါ</string>
   <string name="create_account_next">ရှေ့</string>
   <string name="create_account_button">အကောင့် ဖန်တီးရန်</string>
@@ -132,6 +141,7 @@
   <string name="about_description">ဝီကီပီးဒီးယားအက်ပ် အကြောင်း</string>
   <string name="privacy_policy_description">ကိုယ်ရေးကိုယ်တာ မူဝါဒ</string>
   <string name="terms_of_use_description">အသုံးပြုခြင်းဆိုင်ရာ သတ်မှတ်ချက်များ</string>
+  <string name="about_wikipedia_url">https://my.m.wikipedia.org/wiki/Wikipedia:About</string>
   <string name="cc_by_sa_3_url">https://creativecommons.org/licenses/by-sa/3.0/</string>
   <string name="cc_0_url">https://creativecommons.org/publicdomain/zero/1.0/</string>
   <string name="about_libraries_heading">အသုံးပြုထားသော စာကြည့်တိုက်များ</string>
@@ -143,6 +153,8 @@
   <string name="about_wmf">&lt;a href=\"http://m.wikimediafoundation.org/wiki/Home\"&gt;Wikimedia Foundation&lt;/a&gt; ၏ ထုတ်ကုန်တစ်ခု</string>
   <string name="about_activity_title">အကြောင်း</string>
   <string name="edit_abandon_confirm">ဤစာမျက်နှာသည် ပြောင်းလဲထားသည်။ သင့်ပြောင်းလဲမှုများအား မသိမ်းဆည်းဘဲ ထွက်ရန် သေချာပါသလား?</string>
+  <string name="edit_abandon_confirm_yes">လုပ်မည်</string>
+  <string name="edit_abandon_confirm_no">မလုပ်ပါ</string>
   <string name="user_blocked_from_editing_title">ပိတ်ပင်ထားသည်</string>
   <string name="user_logged_in_blocked_from_editing">သင့်အသုံးပြုသူအကောင့်အား ဤဝီကီတွင် တည်းဖြတ်ခြင်းမှ ပိတ်ပင်ထားသည်။</string>
   <string name="user_anon_blocked_from_editing">တည်းဖြတ်ခြင်းမှ သင့်အိုင်ပီလိပ်စာအား ပိတ်ပင်ထားသည်။</string>
@@ -157,6 +169,8 @@
   <string name="edit_summary_tag_other_hint">စာမျက်နှာအား တိုးတက်ကောင်းမွန်စေခဲ့သည့် အခြားနည်းလမ်းများ</string>
   <string name="find_next">ရှေ့တွင် ရှာရန်</string>
   <string name="find_previous">နောက်တွင် ရှာရန်</string>
+  <string name="find_first_occurence">ဤသည်မှာ ပထမဆုံးဖြစ်စဉ်ဖြစ်သည်။</string>
+  <string name="find_last_occurence">ဤသည်မှာ နောက်ဆုံးဖြစ်စဉ်ဖြစ်သည်။</string>
   <string name="abusefilter_title_warn">ဤတည်းဖြတ်မှုသည် အပြုသဘောမဆောင်သည့် တည်းဖြတ်မှု ဖြစ်နိုင်သည်။ ဤသည်ကို လွှင့်တင်ရန်မှာ သေချာပါသလား?</string>
   <string name="abusefilter_title_disallow">ဤတည်းဖြတ်မှုအား မလွှင့်နိုင်ပါ။ ကျေးဇူးပြု၍ နောက်ပြန်သွားပြီး ပြင်ဆင်ပါ။</string>
   <string name="abusefilter_text_warn">အလိုအလျောက်စစ်ဆေးချက်မှ ဤတည်းဖြတ်မှုသည် အပြုသဘောမဆောင်ကြောင်း တွေ့ရှိရပါသည်။ ယင်းတွင် အောက်ပါအချက် တစ်ခု သို့ ထို့ထက်ပိုပါနိုင်ပါသည်:&lt;br /&gt;&lt;br /&gt;· စာလုံးကြီးများဖြင့် ရိုက်ထားခြင်း&lt;br /&gt;· ဆောင်းပါးအား ဗလာပြုလုပ်ခြင်း သို့ အနှောက်အယှက်ဖြစ်စေခြင်း&lt;br /&gt;· မသက်ဆိုင်သော ပြင်ပလင့်ခ်များ သို့ ပုံများ&lt;br /&gt;· စာလုံးများ ထပ်ကာထပ်ကာ ရေးသားခြင်း</string>
@@ -169,6 +183,8 @@
   <string name="search_recent_header">လတ်တလော ရှာဖွေမှုများ -</string>
   <string name="button_clear_all_recent_searches">မကြာမီက ရှာဖွေမှုများကို ရှင်းရန်</string>
   <string name="clear_recent_searches_confirm">သင့်ရှာဖွေမှု ရာဇဝင်ကို ရှင်းလင်းမည်မှာ သေချာပါသလား?</string>
+  <string name="clear_recent_searches_confirm_yes">လုပ်မည်</string>
+  <string name="clear_recent_searches_confirm_no">မလုပ်ပါ</string>
   <string name="error_browser_not_found">ဝက်ဘ်စာမျက်နှာအား မဖွင့်နိုင်ပါ (ဘရောက်ဇာ app မတွေ့ပါ)။</string>
   <string name="table_infobox">အချက်တိုများ</string>
   <string name="table_other">နောက်ထပ် အချက်အလက်များ</string>
@@ -183,6 +199,7 @@
   <string name="preference_title_show_images">ပုံများ ပြသရန်</string>
   <string name="preference_summary_show_images">စာမျက်နှာများရှိ ပုံများပေါ်စေရန် ခွင့်ပြု သို့ ပိတ်ပါ။ သင့်အင်တာနက် ဆက်သွယ်မှုသည် နှေးကွေးပါက သို့ သင့်ဒေတာအစီအစဉ်သည် ကန့်သတ်မှုရှိပါက ဤအပြင်အဆင်ကို ဖြုတ်ထားပါ။</string>
   <string name="read_more_section">ဆက်လက်ဖတ်ရှု</string>
+  <string name="about_article_section">ဤဆောင်းပါးအကြောင်း</string>
   <string name="menu_gallery_visit_page">ဖိုင်စာမျက်နှာသို့ သွားရန်</string>
   <string name="gallery_error_draw_failed">ပုံဆွဲ၍ မရနိုင်ပါ။</string>
   <string name="license_title">%s အတွက် လိုင်စင်</string>
@@ -191,7 +208,7 @@
   <string name="gallery_save_progress">ဖိုင်ဆွဲချနေသည်...</string>
   <string name="gallery_save_success">ဖိုင်အား အောင်မြင်စွာ သိမ်းပြီး။</string>
   <string name="gallery_error_video_failed">ဗီဒီယိုကို ဖွင့်၍ မရနိုင်ပါ။</string>
-  <string name="gallery_save_image_write_permission_rationale" fuzzy="true">ပုံများအား သိမ်းဆည်းရန် သင့်စက်ရှိ သိုလှောင်မှုတွင် ရေးသားနိုင်ရန် ခွင့်ပြုချက်ပေးပါ။ ကျေးဇူးပြု၍ နောက်တစ်ဖန် ကြိုးစားပြီး ခွင့်ပြုချက်တောင်းဆိုခြင်းကို ခွင့်ပြုပေးပါ။</string>
+  <string name="gallery_save_image_write_permission_rationale">ပုံများအား သိမ်းဆည်းရန် သင့်စက်ရှိ သိုလှောင်မှုတွင် ရေးသားနိုင်ရန် ခွင့်ပြုချက် လိုအပ်သည်။</string>
   <string name="err_cannot_save_file">ဖိုင်အား မသိမ်းဆည်းနိုင်ပါ</string>
   <string name="snippet_share_intro">\@Wikipedia ပေါ်ရှိ \"%1$s\": %2$s</string>
   <string name="expand_refs">ချဲ့ကားရန် တို့ထိ</string>
@@ -205,8 +222,11 @@
   <string name="menu_new_tab">tab အသစ်</string>
   <string name="menu_close_all_tabs">tab အားလုံး ပိတ်ရန်</string>
   <string name="close_all_tabs_confirm">tab အားလုံးကို ပိတ်ရန် သေချာပါသလား?</string>
+  <string name="close_all_tabs_confirm_yes">လုပ်မည်</string>
+  <string name="close_all_tabs_confirm_no">မလုပ်ပါ</string>
   <string name="button_close_tab">tab ပိတ်ရန်</string>
-  <string name="tool_tip_select_text" fuzzy="true">ကူးယူရန်နှင့် မျှဝေရန်အတွက် စာသားအတွင်း မည်သည့်နေရာတွင်မဆို ဖိထားပြီး ရွေးချယ်ပါ။</string>
+  <string name="tool_tip_select_text_title">ရွေးချယ်ရန်အတွက် ဖိထားပါ</string>
+  <string name="tool_tip_select_text">ကူးယူရန်နှင့် မျှဝေရန်အတွက် စာသားအတွင်း မည်သည့်နေရာတွင်မဆို ဖိထားပြီး ရွေးချယ်ပါ။</string>
   <string name="tool_tip_share">စိတ်ဝင်စားသည့် အချက်အား ဟိုက်လိုက်လုပ်ပြီးပါက သင်နှစ်သက်ရာ ကွန်ယက်တွင် မျှဝေလိုက်ပါ!</string>
   <string name="page_view_in_browser">စာမျက်နှာအား ဘရောက်ဇာတွင် ကြည့်ရန်</string>
   <string name="tool_tip_toc_button">ဤခလုတ်ကို နှိပ်၍ မာတိကာအား အချိန်မရွေးကြည့်ပါ။ သို့မဟုတ် မျက်နှာပြင်၏ ညာဖက်စွန်းအား ပွတ်ဆွဲပါ။</string>
@@ -217,6 +237,7 @@
   <string name="text_copied">စာသားအား ကူးယူပြီး။</string>
   <string name="button_continue_to_article">ဆောင်းပါး ဖတ်ရှုရန်</string>
   <string name="button_add_to_reading_list">ဖတ်ရှုစာရင်းသို့ ပေါင်းထည့်ရန်</string>
+  <string name="page_offline_notice_cannot_load_while_offline">အင်တာနက်မရှိချိန်တွင် ဆောင်းပါးများကို ဖတ်ရှုရန် မဖြစ်နိုင်ပါ။</string>
   <string name="button_get_directions">လမ်းညွှန် ရယူရန်</string>
   <string name="error_no_maps_app">ဤလမ်းညွှန်ချက်အား ထောက်ပံ့ပေးနိုင်သည့် app များ ရှာမတွေ့ပါ။</string>
   <string name="preference_title_show_link_previews">နမူနာလင့်ခ်ပြရန်</string>
@@ -227,10 +248,12 @@
   <string name="enable_location_service">လုပ်ဆောင်ပါ</string>
   <string name="location_permissions_enable_prompt">အနီးအနားနေရာများကို မြင်နိုင်ရန် တည်နေရာပြ ခွင့်ပြုချက်ကို ဖွင့်မည်</string>
   <string name="location_permissions_enable_action">ဖွင့်မည်</string>
+  <string name="multi_select_items_selected">%d ရွေးချယ်ခဲ့။</string>
   <string name="error_message_generic">အမှားတစ်ခု ဖြစ်ခဲ့သည်</string>
   <string name="view_link_preview_error_button_dismiss">ဖြုတ်ရန်</string>
   <string name="error_page_does_not_exist">ဤစာမျက်နှာ မရှိပါ</string>
   <string name="view_wiki_error_message_offline">အင်တာနက်သို့ ချိတ်ဆက်နိုင်ခြင်း မရှိပါ။</string>
+  <string name="reference_title">ရည်ညွှန်း %s</string>
   <string name="crash_report_dialog_title">စိတ်မကောင်းပါ။ နောက်ဆုံးအကြိမ်က app သည် crash ဖြစ်ခဲ့သည်။</string>
   <string name="crash_report_dialog_text">တတိယ ဝန်ဆောင်မှုလုပ်ငန်းဖြစ်သော HockeyApp သို့ app မှ ပျက်မှု အစီရင်ခံချက်အား ပေးပို့လိုပါသလား? ထိုသို့ပြုလုပ်ခြင်းဖြင့် ဝီကီမီဒီယာမှ သင့်အစီရင်ခံချက်အား ကြည့်ရှုကာ ပြင်ဆင်ပေးနိုင်ပါလိမ့်မည်။</string>
   <string name="crash_report_dialog_dont_send_button">ကျော်ရန်</string>
@@ -248,15 +271,23 @@
   <string name="color_theme_select">Theme</string>
   <string name="color_theme_light">အလင်း</string>
   <string name="color_theme_dark">အမှောင်</string>
+  <string name="color_theme_black">အနက်ရောင်</string>
+  <string name="color_theme_test_title">နမူနာစာသား</string>
+  <string name="text_size_increase">စာလုံးအရွယ်အစား ကြီးရန်။</string>
+  <string name="text_size_decrease">စာလုံးအရွယ်အစား သေးရန်။</string>
   <string name="nav_item_reading_lists">ကျွန်ုပ်၏ စာရင်းများ</string>
   <string name="reading_list_untitled">အမည်မပေးထား</string>
   <string name="reading_list_save_to">စာဖတ်စာရင်းသို့ သိမ်းရန်</string>
   <string name="reading_list_create_new">အသစ်ဖန်တီးရန်</string>
+  <string name="reading_list_title_exists">ဖတ်ရှုရန်စာရင်းတွင် \"%s\" ရှိပြီးသားဖြစ်သည်။</string>
   <string name="reading_list_entry_empty">ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ</string>
   <string name="reading_list_added_to_named">%s သို့ ပေါင်းထည့်ပြီး။</string>
   <string name="reading_list_added_to_unnamed">စာဖတ်စာရင်းသို့ ပေါင်းထည့်ပြီး။</string>
   <string name="reading_list_already_exists">ထိုစာရင်းထဲတွင် ဤဆောင်းပါး ရှိနှင့်ပြီး ဖြစ်သည်။</string>
   <string name="reading_list_added_view_button">စာရင်းအား ကြည့်ရန်</string>
+  <string name="format_reading_list_statistical_summary_singular">ဆောင်းပါး ၁ ခု၊ %1$.2f မက်ဂါဘိုက်</string>
+  <string name="format_reading_list_statistical_summary_plural">ဆောင်းပါး %1$d ခု၊ %2$.2f မက်ဂါဘိုက်</string>
+  <string name="format_reading_list_statistical_detail_singular">ဆောင်းပါး ၁ ခု၏ %1$d ကို အင်တာနက်မရှိပဲ ဖတ်ရှုနိုင်သည်၊ %2$.2f မက်ဂါဘိုက်။</string>
   <string name="reading_list_sort">စီစဉ်</string>
   <string name="reading_list_sort_by_name">အမည်ဖြင့် စီစဉ်</string>
   <string name="reading_list_sort_by_name_desc">အမည်ဖြင့် စီစဉ် (ပြောင်းပြန်)</string>
@@ -265,10 +296,16 @@
   <string name="reading_list_menu_delete">စာဖတ်စာရင်း ဖျက်ရန်</string>
   <string name="reading_list_menu_rename">အမည်ပြန်မှည့်ရန်</string>
   <string name="reading_list_menu_edit_description">ဖော်ပြချက်တစ်ခု ထည့်ရန်</string>
+  <string name="reading_list_action_menu_remove_from_offline">အင်တာနက်မရှိဘဲ ဖတ်ရှုခြင်းမှ ဖယ်ထုတ်ရန်။</string>
+  <string name="reading_list_action_menu_save_for_offline">အင်တာနက်မရှိပဲ ဖတ်ရှုရန် သိမ်းဆည်းခြင်း။</string>
+  <string name="reading_list_action_menu_remove_all_from_offline">အင်တာနက်မရှိ ဖတ်ရှုခြင်းမှ အားလုံးအား ဖယ်ထုတ်ရန်။</string>
+  <string name="reading_list_action_menu_save_all_for_offline">အင်တာနက်မရှိပဲ ဖတ်ရှုရန် အားလုံးအား သိမ်းဆည်းခြင်း။</string>
+  <string name="reading_list_action_menu_add_to_another_list">အခြားသော စာရင်းတွင် ထည့်သွင်းရန်။</string>
   <string name="reading_list_name_sample">ကျွန်ုပ်၏ စာဖတ်စာရင်း</string>
   <string name="reading_list_name_hint">ဤစာရင်း၏ အမည်</string>
   <string name="reading_list_description_hint">ဖော်ပြချက် (မထည့်လည်းရသည်)</string>
   <string name="reading_list_item_deleted">%s ကို စာရင်းမှ ဖယ်ရှားပြီး</string>
+  <string name="reading_list_items_deleted">ဆောင်းပါး %d ခုကို စာရင်းမှ ဖယ်ရှားခဲ့။</string>
   <string name="reading_list_item_delete_undo">နောက်ပြန် ပြန်ပြင်ရန်</string>
   <string name="reading_list_deleted">%s ကို ဖျက်ပြီး</string>
   <string name="reading_lists_empty">စာဖတ်စာရင်း မရှိ။</string>
@@ -277,11 +314,16 @@
   <string name="reading_lists_onboarding_for_example">နမူနာအားဖြင့်</string>
   <string name="reading_lists_onboarding_example1">လည်ပတ်ရန် နေရာများ</string>
   <string name="reading_lists_onboarding_example2">အနှစ်သက်ဆုံး တိရစ္ဆာန်များ</string>
-  <string name="reading_lists_onboarding_example3" fuzzy="true">အာကာသ!</string>
+  <string name="reading_lists_onboarding_example3">အာကာသ!</string>
   <string name="reading_lists_onboarding_got_it">ရပြီဟေ့</string>
   <string name="reading_list_no_description">ဖော်ပြချက် မရှိ</string>
   <string name="reading_list_empty">ဤစာရင်း၌ သင်ပေါင်းထည့်ထားသော ဆောင်းပါးမရှိပါ</string>
+  <string name="reading_list_add_to_other_list">အခြားသော ဖတ်ရှုမည့်စာရင်းတွင် ထည့်သွင်းရန်။</string>
+  <string name="reading_list_remove_from_list">%s မှ ဖယ်ထုတ်ရန်။</string>
   <string name="reading_list_remove_from_lists">ဖတ်ရှုစာရင်းမှ ဖယ်ထုတ်ရန်</string>
+  <string name="reading_list_sync_reminder_action">ဖွင့်ပါ။</string>
+  <string name="reading_lists_confirm_remote_delete_yes">လုပ်မည်။</string>
+  <string name="reading_lists_confirm_remote_delete_no">မလုပ်ပါ။</string>
   <string name="user_option_sync_label">ရွေးချယ်စရာများ</string>
   <string name="notification_button_view_user">အသုံးပြုသူနှင့် ဆွေးနွေးရန်</string>
   <string name="notification_talk_title">ဝီကီပီးဒီးယားရှိ စာတိုအသစ်</string>
@@ -290,10 +332,12 @@
   <string name="notification_reverted">\"%2$s\" ဆောင်းပါးရှိ သင့်တည်းဖြတ်မှုအား %1$s က နောက်ပြန်ပြင်ခဲ့သည်။</string>
   <string name="notification_thanks_title">သင့်အား ကျေးဇူးတင်ခဲ့သည်!</string>
   <string name="notification_thanks">\"%2$s\" စာမျက်နှာရှိ သင့်တည်းဖြတ်မှုအတွက် %1$s က ကျေးဇူးတင်ခဲ့သည်</string>
+  <string name="notification_syncing_cancel_button">မလုပ်တော့ပါ။</string>
   <string name="view_continue_reading_card_title">ဆက်လက်ဖတ်ရှုရန်</string>
   <string name="view_because_you_read_card_title">သင်ဖတ်ရှုခဲ့သောကြောင့်</string>
   <string name="view_random_card_title">ကျပန်းစဉ်</string>
-  <string name="view_random_card_subtitle">ဝီကီပီးဒီးယားမှ ကျပန်းဆောင်းပါးတစ်ပုဒ်အား ဖတ်ပါ</string>
+  <string name="view_random_card_subtitle" fuzzy="true">ဝီကီပီးဒီးယားမှ ကျပန်းဆောင်းပါးတစ်ပုဒ်အား ဖတ်ပါ</string>
+  <string name="view_random_card_action">ကျပန်းစာမျက်နှာ</string>
   <string name="view_main_page_card_title">ယနေ့အတွက် ဝီကီပီးဒီးယား</string>
   <string name="view_main_page_card_subtitle">%s အတွက် ဗဟိုစာမျက်နှာ</string>
   <string name="view_featured_image_card_title">ယနေ့အတွက် ဓာတ်ပုံ</string>
@@ -312,7 +356,18 @@
     <item quantity="other">%d ရက် အကြာက</item>
   </plurals>
   <string name="view_continue_reading_card_subtitle_today">ယနေ့</string>
+  <string name="view_continue_reading_card_subtitle_read_date">%s ဖတ်ရှုခဲ့</string>
   <string name="view_announcement_card_negative_action">မလိုပါ၊ ကျေးဇူးတင်ပါသည်။</string>
+  <string name="view_featured_article_card_title">အထူးဆောင်းပါး</string>
+  <string name="view_featured_article_footer_save_button_label">သိမ်းရန်</string>
+  <string name="view_featured_article_footer_saved_button_label">သိမ်းဆည်းပြီး</string>
+  <string name="feed_configure_menu_select_all">အားလုံးကိုရွေးချယ်သည်။</string>
+  <string name="feed_configure_menu_deselect_all">အားလုံးကို မရွေးချယ်ခဲ့</string>
+  <string name="feed_item_type_news">လက်ရှိအဖြစ်အပျက်များအကြောင်းဆောင်းပါးများ</string>
+  <string name="feed_item_type_on_this_day">သမိုင်း၌ ဤနေ့တွင် ဖြစ်ပွားခဲ့သော ဖြစ်ရပ်များ</string>
+  <string name="feed_item_type_featured_article">ဝီကီပီးဒီးယားရှိ ယနေ့အထူးဆောင်းပါး</string>
+  <string name="feed_item_type_trending">ယနေ့ဖတ်ရှုမှုအများဆုံး ဆောင်းပါးများ</string>
+  <string name="feed_item_type_featured_image">ဝီကီကွန်မွန်းမှ ယနေ့အထူးဓါတ်ပုံ</string>
   <string name="description_edit_text_hint">ဖော်ပြချက် ခေါင်းစဉ်</string>
   <string name="description_edit_save">လွှင့်တင်ရန်</string>
   <string name="description_edit_add_description">ဖော်ပြချက်အတို ပေါင်းထည့်ရန်</string>
@@ -341,7 +396,34 @@
   <string name="description_edit_help_tips_example2">ကမ္ဘာ့အမြင့်ဆုံးတောင်</string>
   <string name="description_edit_help_more_info">သတင်းအချက်အလက် ပို၍</string>
   <string name="description_edit_revert_subtitle">ဝီကီပီဒီးယား တည်းဖြတ်မှုအတွက် ကျေးဇူးတင်ပါသည်</string>
+  <string name="offline_compilation_detail_date_size">%1$s • %2$.2f ဂစ်ဂါဘိုက်</string>
+  <string name="offline_compilation_detail_button_download">%.2f ဂစ်ဂါဘိုက် ဒေါင်းလုပ်လုပ်ခြင်း</string>
+  <string name="offline_compilation_detail_button_remove">ဖယ်ရှားရန်</string>
+  <string name="remote_compilation_download">ဒေါင်းလုပ်ယူရန်</string>
+  <string name="storage_size">%.2f GB</string>
+  <string name="storage_size_free">%.2f ဂစ်ဂါဘိုက် အခမဲ့</string>
+  <string name="compilation_download_cancel_confirm_yes">လုပ်မည်</string>
+  <string name="compilation_download_cancel_confirm_no">မလုပ်ပါ</string>
+  <string name="compilation_share">မျှဝေ</string>
+  <string name="compilation_remove">ဖယ်ရှားရန်</string>
+  <string name="offline_library_onboarding_action">ပိုမိုရှာဖွေရန်</string>
+  <string name="offline_library_onboarding_button_done">ပြီးပြီ</string>
   <string name="onboarding_skip">ကျော်ရန်</string>
   <string name="onboarding_continue">ဆက်လက်</string>
   <string name="onboarding_get_started">စတင်ပါ</string>
+  <string name="onboarding_welcome_title">အခမဲ့ လွတ်လပ်စွယ်စုံကျမ်း</string>
+  <string name="onboarding_save_to_reading_lists_title">ဖတ်ရှုမည့်စာရင်းတွင် သိမ်းဆည်းရန်။</string>
+  <string name="onboarding_save_to_reading_lists_text">နောင်တွင် သင်အော့ဖ်လိုင်းဖြစ်နေစဉ်တွင်တောင်မှ ဖတ်ရှုနိုင်ရန် ဖတ်ရှုမည့်စာရင်းအား ဖန်တီးပါ။</string>
+  <string name="onboarding_got_it">ရပြီဟေ့</string>
+  <string name="app_shortcuts_random">ကျပန်း</string>
+  <string name="app_shortcuts_continue_reading">ဆက်လက် ဖတ်ရှုရန်</string>
+  <string name="app_shortcuts_search">ရှာဖွေရန်</string>
+  <string name="on_this_day_card_title">ယနေ့ဖြစ်ရပ်များ</string>
+  <string name="more_events_text">ယနေ့အတွက် ထပ်မံ၍ ကြည့်ရှုရန်။</string>
+  <string name="this_year">ဤနှစ်</string>
+  <string name="back_to_top">ထိပ်ဆုံးသို့ ပြန်သွားရန်</string>
+  <plurals name="diff_years">
+    <item quantity="one">မနှစ်</item>
+    <item quantity="other">%d နှစ်အကြာက</item>
+  </plurals>
 </resources>
